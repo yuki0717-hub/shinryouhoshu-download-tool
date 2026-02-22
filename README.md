@@ -1,0 +1,2 @@
+# shinryouhoshu-download-tool
+診療報酬関連資料を厚生労働省のウェブサイトから自動ダウンロードするツール
