@@ -35,7 +35,7 @@ class LawTarget:
 
 TARGETS: List[LawTarget] = [
     LawTarget("健康保険法", "法律", "211AC0000000070", "kenko-hoken-hou.txt"),
-    LawTarget("健康保険法施行令", "施行令", "211IO0000000243", "kenko-hoken-seirei.txt"),
+    LawTarget("健康保険法施行令", "施行令", "215IO0000000243", "kenko-hoken-seirei.txt"),
     LawTarget("健康保険法施行規則", "施行規則", "215M10000008036", "kenko-hoken-kisoku.txt"),
     LawTarget("保険医療機関及び保険医療養担当規則", "省令", "332M50000100015", "ryoutan-kisoku.txt"),
     LawTarget("医療法", "法律", "323AC0000000205", "iryo-hou.txt"),
