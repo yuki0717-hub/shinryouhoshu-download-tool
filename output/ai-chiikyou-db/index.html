@@ -1,5 +1,71 @@
 <!DOCTYPE html>
-<html>
-<head><title>中医協資料</title></head>
-<body><h1>中医協資料データベース</h1></body>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中医協資料 - AI診療報酬DB</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Hiragino Sans', sans-serif; background: #0a0a1a; color: #e0e0e0; min-height: 100vh; }
+        .header { background: linear-gradient(135deg, #1a2a3e, #0d47a1); padding: 30px 20px; text-align: center; border-bottom: 2px solid #42a5f5; }
+        .header h1 { font-size: 1.8em; color: #fff; margin-bottom: 8px; }
+        .header p { color: #a0c0e0; font-size: 0.95em; }
+        .back-link { display: inline-block; margin: 20px; padding: 10px 20px; background: #2d2d5e; color: #8b8bff; text-decoration: none; border-radius: 8px; transition: background 0.3s; }
+        .back-link:hover { background: #3d3d7e; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .card { background: #12122a; border: 1px solid #2a2a5a; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+        .card h2 { color: #42a5f5; font-size: 1.3em; margin-bottom: 12px; border-bottom: 1px solid #2a2a5a; padding-bottom: 8px; }
+        .card p { line-height: 1.8; color: #b0b0d0; }
+        .file-list { list-style: none; padding: 0; }
+        .file-list li { padding: 12px 16px; margin: 8px 0; background: #1a1a3e; border-radius: 8px; border-left: 3px solid #42a5f5; }
+        .status-badge { display: inline-block; padding: 4px 12px; background: #1b2a3a; color: #42a5f5; border-radius: 12px; font-size: 0.85em; margin-top: 8px; }
+        .info-box { background: #1a1a3e; border: 1px solid #3a3a6a; border-radius: 8px; padding: 16px; margin: 16px 0; }
+        .info-box code { background: #2a2a5a; padding: 2px 8px; border-radius: 4px; color: #42a5f5; font-size: 0.9em; }
+        .footer { text-align: center; padding: 30px; color: #666; font-size: 0.85em; border-top: 1px solid #2a2a5a; margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📋 中医協資料データベース</h1>
+        <p>中央社会保険医療協議会の答申・議事録・配布資料</p>
+    </div>
+    <a href="https://yuki0717-hub.github.io/shinryouhoshu-download-tool/" class="back-link">← トップページに戻る</a>
+    <div class="container">
+        <div class="card">
+            <h2>📋 データベース概要</h2>
+            <p>中央社会保険医療協議会（中医協）の審議資料・答申・議事録を収集し、AI（LLM）から参照可能な形式で構造化しています。診療報酬改定の審議過程を追跡できます。</p>
+            <span class="status-badge">✅ 毎日自動更新</span>
+        </div>
+
+        <div class="card">
+            <h2>📁 収録データ</h2>
+            <ul class="file-list">
+                <li>📄 中医協総会 議事録・配布資料</li>
+                <li>📄 中医協答申書</li>
+                <li>📄 診療報酬基本問題小委員会 資料</li>
+                <li>📄 医療技術評価分科会 資料</li>
+                <li>📄 薬価専門部会 資料</li>
+                <li>📄 保険医療材料専門部会 資料</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>🔗 AI からの参照方法</h2>
+            <div class="info-box">
+                <p>ChatGPT・Claude・Gemini などで以下のURLを指定してください：</p>
+                <br>
+                <code>https://yuki0717-hub.github.io/shinryouhoshu-download-tool/output/ai-chiikyou-db/</code>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📊 データ形式</h2>
+            <p>JSON / TXT 形式で提供。GitHub Actions により厚生労働省サイトから定期的に自動取得・更新されます。</p>
+        </div>
+    </div>
+    <div class="footer">
+        <p>© 2026 診療報酬データベース | GitHub Pages で自動配信</p>
+    </div>
+</body>
 </html>
+
