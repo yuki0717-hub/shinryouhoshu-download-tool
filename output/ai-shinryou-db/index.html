@@ -22,6 +22,7 @@
         .file-list li a:hover { color: #fff; text-decoration: underline; }
         .file-list li .desc { display: block; color: #888; font-size: 0.85em; margin-top: 4px; }
         .status-badge { display: inline-block; padding: 4px 12px; background: #1b3a1b; color: #4caf50; border-radius: 12px; font-size: 0.85em; margin-top: 8px; }
+        .warning-box { background: #3a2a1a; border: 1px solid #ff9800; border-radius: 8px; padding: 16px; margin: 16px 0; color: #ffcc80; }
         .info-box { background: #1a1a3e; border: 1px solid #3a3a6a; border-radius: 8px; padding: 16px; margin: 16px 0; }
         .info-box code { background: #2a2a5a; padding: 2px 8px; border-radius: 4px; color: #8b8bff; font-size: 0.9em; word-break: break-all; }
         .source-note { background: #1a1a2e; border: 1px solid #333366; border-radius: 8px; padding: 16px; margin-top: 16px; font-size: 0.9em; color: #9999bb; }
@@ -38,70 +39,112 @@
     <div class="container">
         <div class="card">
             <h2>📋 データベース概要</h2>
-            <p>厚生労働省・中医協が公開する令和8年度診療報酬改定に関連する公式資料を収集し、リンク集として提供しています。AI（LLM）からの参照にも対応しています。</p>
-            <span class="status-badge">✅ 稼働中</span>
+            <p>厚生労働省の診療報酬改定関連資料を自動収集し、テキスト化・保存しています。ダウンロード済みデータはこのサーバー内から直接取得可能です。外部リンク（厚労省PDF等）も併記しています。</p>
+            <span class="status-badge">✅ 稼働中（毎日自動更新）</span>
         </div>
 
         <div class="card">
-            <h2>📁 令和8年度 診療報酬改定 答申資料（2026年2月13日 中医協答申）</h2>
+            <h2>📊 CSVインデックス（機械可読）</h2>
+            <div class="info-box">
+                <p>全ダウンロード済みファイルの一覧：</p><br>
+                <code><a href="./data/comprehensive_index.csv" style="color:#8b8bff;">./data/comprehensive_index.csv</a></code>（テキスト・PDF 11件）<br><br>
+                <code><a href="./data/files_list.csv" style="color:#8b8bff;">./data/files_list.csv</a></code>（厚労省PDF・Excel 37件）<br><br>
+                <code><a href="./data/portalpage_links.json" style="color:#8b8bff;">./data/portalpage_links.json</a></code>（ポータルページリンク集 JSON）
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📁 ダウンロード済みテキスト資料（令和8年度）</h2>
+            <ul class="file-list">
+                <li>
+                    <a href="./text/2026/gisoku-kaishaku/2026_%E4%BB%A4%E5%92%8C%EF%BC%98%E5%B9%B4%EF%BC%91%E6%9C%8814%E6%97%A5%E5%8E%9A%E7%94%9F%E5%8A%B4%E5%83%8D%E5%A4%A7%E8%87%A3%E3%81%8C%E4%B8%AD%E5%A4%AE%E7%A4%BE%E4%BC%9A%E4%BF%9D%E9%99%BA%E5%8C%BB%E7%99%82%E5%8D%94%E8%AD%B0%E4%BC%9A%E3%81%AB%E8%AB%AE%E5%95%8F_20260222.txt">📄 厚生労働大臣が中医協に諮問（2026/1/14）</a>
+                    <span class="desc">テキスト 11.7 KB — 疑義解釈カテゴリ</span>
+                </li>
+                <li>
+                    <a href="./text/2026/gisoku-kaishaku/2026_%E4%BB%A4%E5%92%8C%EF%BC%98%E5%B9%B4%EF%BC%92%E6%9C%8813%E6%97%A5%E4%B8%AD%E5%A4%AE%E7%A4%BE%E4%BC%9A%E4%BF%9D%E9%99%BA%E5%8C%BB%E7%99%82%E5%8D%94%E8%AD%B0%E4%BC%9A%E3%81%8C%E5%8E%9A%E7%94%9F%E5%8A%B4%E5%83%8D%E5%A4%A7%E8%87%A3%E3%81%AB%E7%AD%94%E7%94%B3_20260222.txt">📄 中医協が厚生労働大臣に答申（2026/2/13）</a>
+                    <span class="desc">テキスト 12.0 KB — 疑義解釈カテゴリ</span>
+                </li>
+                <li>
+                    <a href="./text/2026/other/2026_%E8%A8%BA%E7%99%82%E5%A0%B1%E9%85%AC%E6%94%B9%E5%AE%9A_20260222.txt">📄 診療報酬改定（ポータルページテキスト）</a>
+                    <span class="desc">テキスト 9.2 KB</span>
+                </li>
+                <li>
+                    <a href="./text/2026/other/2026_%E6%B6%88%E8%B2%BB%E7%A8%8E%E3%81%A8%E8%A8%BA%E7%99%82%E5%A0%B1%E9%85%AC%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6_20260222.txt">📄 消費税と診療報酬について</a>
+                    <span class="desc">テキスト 8.3 KB</span>
+                </li>
+                <li>
+                    <a href="./text/2026/other/2026_%E2%80%8B%E4%BB%A4%E5%92%8C%EF%BC%98%E5%B9%B4%E5%BA%A6%E8%A8%BA%E7%99%82%E5%A0%B1%E9%85%AC%E6%94%B9%E5%AE%9A%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%EF%BC%88%E4%BB%A4%E5%92%8C%EF%BC%97%E5%B9%B412%E6%9C%8824%E6%97%A5%EF%BC%89_20260222.txt">📄 令和8年度診療報酬改定について（令和7年12月24日）</a>
+                    <span class="desc">テキスト 8.2 KB</span>
+                </li>
+                <li>
+                    <a href="./text/2026/other/2026_%E6%89%80%E7%AE%A1%E3%81%AE%E6%B3%95%E4%BB%A4%E3%80%81%E5%91%8A%E7%A4%BA%E3%83%BB%E9%80%9A%E9%81%94%E7%AD%89_20260222.txt">📄 所管の法令、告示・通達等</a>
+                    <span class="desc">テキスト 1.4 KB</span>
+                </li>
+                <li>
+                    <a href="./text/2026/other/2026_%E9%9B%BB%E5%AD%90%E7%94%B3%E8%AB%8B%EF%BC%88%E7%94%B3%E8%AB%8B%E3%83%BB%E5%B1%8A%E5%87%BA%E7%AD%89%E3%81%AE%E6%89%8B%E7%B6%9A%E6%A1%88%E5%86%85%EF%BC%89_20260222.txt">📄 電子申請（申請・届出等の手続案内）</a>
+                    <span class="desc">テキスト 15.8 KB</span>
+                </li>
+                <li>
+                    <a href="./text/2026/tokurei-rinji/2026_%E3%82%B0%E3%83%AC%E3%83%BC%E3%82%BE%E3%83%BC%E3%83%B3%E8%A7%A3%E6%B6%88%E5%88%B6%E5%BA%A6%E3%83%BB%E6%96%B0%E4%BA%8B%E6%A5%AD%E7%89%B9%E4%BE%8B%E5%88%B6%E5%BA%A6_20260222.txt">📄 グレーゾーン解消制度・新事業特例制度</a>
+                    <span class="desc">テキスト 30.1 KB — 特例措置・臨時改定カテゴリ</span>
+                </li>
+                <li>
+                    <a href="./text/2026/iryo-kiki-tsuutatsu/2026_%E5%8C%BB%E8%96%AC%E5%93%81%E3%83%BB%E5%8C%BB%E7%99%82%E6%A9%9F%E5%99%A8_20260222.txt">📄 医薬品・医療機器</a>
+                    <span class="desc">テキスト 16.3 KB — 医療機器保険適用通知カテゴリ</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>📁 ダウンロード済みPDF・Excel資料</h2>
+            <ul class="file-list">
+                <li>
+                    <a href="./text/2025/kihon-hoshishin/2025_%E4%BB%A4%E5%92%8C7%E5%B9%B412%E6%9C%889%E6%97%A5%E4%BB%A4%E5%92%8C%EF%BC%98%E5%B9%B4%E5%BA%A6%E8%A8%BA%E7%99%82%E5%A0%B1%E9%85%AC%E6%94%B9%E5%AE%9A%E3%81%AE%E5%9F%BA%E6%9C%AC%E6%96%B9%E9%87%9D%EF%BC%88%E7%A4%BE%E4%BC%9A%E4%BF%9D%E9%9A%9C%E5%AF%A9%E8%AD%B0%E4%BC%9A%E5%8C%BB%E7%99%82%E4%BF%9D%E9%99%BA%E9%83%A8%E4%BC%9A%E3%83%BB%E7%A4%BE%E4%BC%9A%E4%BF%9D%E9%9A%9C%E5%AF%A9%E8%AD%B0%E4%BC%9A%E5%8C%BB%E7%99%82%E9%83%A8%E4%BC%9A%EF%BC%89%EF%BC%BB285KB%EF%BC%BD_20260222.pdf">📄 令和8年度診療報酬改定の基本方針（2025/12/9）</a>
+                    <span class="desc">PDF 284.9 KB — 基本方針カテゴリ</span>
+                </li>
+                <li>
+                    <a href="./text/2026/other/2026_%E4%BB%A4%E5%92%8C%EF%BC%98%E5%B9%B4%EF%BC%91%E6%9C%8814%E6%97%A5%E4%BB%A4%E5%92%8C%EF%BC%98%E5%B9%B4%E5%BA%A6%E8%A8%BA%E7%99%82%E5%A0%B1%E9%85%AC%E6%94%B9%E5%AE%9A%E3%81%AB%E4%BF%82%E3%82%8B%E3%81%93%E3%82%8C%E3%81%BE%E3%81%A7%E3%81%AE%E8%AD%B0%E8%AB%96%E3%81%AE%E6%95%B4%E7%90%86%EF%BC%BB494KB%EF%BC%BD_20260222.pdf">📄 これまでの議論の整理（2026/1/14）</a>
+                    <span class="desc">PDF 493.6 KB</span>
+                </li>
+            </ul>
+            <div class="warning-box">
+                ⚠️ 上記以外にも <strong>data/</strong> フォルダに厚労省からダウンロードしたPDF・Excelファイルが約37件保存されています。完全な一覧は <a href="./data/files_list.csv" style="color:#ffcc80;">files_list.csv</a> を参照してください。
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📁 外部リンク（厚労省 — 未ダウンロード資料）</h2>
+            <div class="warning-box">
+                ⚠️ 以下はこのサーバーにデータが保存されていない外部リンクです。AIから直接参照するにはPDFを個別に取得する必要があります。
+            </div>
             <ul class="file-list">
                 <li>
                     <a href="https://www.mhlw.go.jp/content/10808000/001655176.pdf" target="_blank">📄 個別改定項目について（総－1）</a>
-                    <span class="desc">PDF 4.8MB — 全改定項目の詳細（短冊）</span>
+                    <span class="desc">外部PDF 4.8MB — 全改定項目の詳細（短冊）— 厚労省サイト</span>
                 </li>
                 <li>
                     <a href="https://www.mhlw.go.jp/content/10808000/001655177.pdf" target="_blank">📄 答申書（総－2）</a>
-                    <span class="desc">PDF 230KB — 中医協から厚生労働大臣への答申</span>
+                    <span class="desc">外部PDF 230KB — 中医協から厚生労働大臣への答申 — 厚労省サイト</span>
                 </li>
                 <li>
                     <a href="https://www.mhlw.go.jp/stf/newpage_70414.html" target="_blank">📄 中医協総会（第647回）議事次第</a>
-                    <span class="desc">答申に関する全資料一覧ページ</span>
+                    <span class="desc">外部HTML — 答申に関する全資料一覧ページ — 厚労省サイト</span>
                 </li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h2>📁 答申別紙（点数表・施設基準）</h2>
-            <ul class="file-list">
-                <li>
-                    <a href="https://www.mhlw.go.jp/stf/newpage_70414.html" target="_blank">📄 別紙1-1 医科診療報酬点数表</a>
-                    <span class="desc">PDF 8.3MB — 医科点数表の改定内容</span>
-                </li>
-                <li>
-                    <a href="https://www.mhlw.go.jp/stf/newpage_70414.html" target="_blank">📄 別紙1-2 歯科診療報酬点数表</a>
-                    <span class="desc">歯科点数表の改定内容</span>
-                </li>
-                <li>
-                    <a href="https://www.mhlw.go.jp/stf/newpage_70414.html" target="_blank">📄 別紙1-3 調剤報酬点数表</a>
-                    <span class="desc">調剤報酬点数表の改定内容</span>
-                </li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h2>📁 改定の基本方針・諮問</h2>
-            <ul class="file-list">
                 <li>
                     <a href="https://www.mhlw.go.jp/content/10808000/001631287.pdf" target="_blank">📄 令和8年度診療報酬改定について（諮問書）</a>
-                    <span class="desc">PDF — 2026年1月14日付 厚生労働省発保0114第1号</span>
+                    <span class="desc">外部PDF — 2026年1月14日付 — 厚労省サイト</span>
                 </li>
                 <li>
                     <a href="https://www.mhlw.go.jp/stf/newpage_67729.html" target="_blank">📄 令和8年度診療報酬改定について（厚労省総合ページ）</a>
-                    <span class="desc">基本方針・改定率・スケジュール等</span>
+                    <span class="desc">外部HTML — 基本方針・改定率・スケジュール等 — 厚労省サイト</span>
                 </li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h2>📁 議論の整理・パブリックコメント</h2>
-            <ul class="file-list">
                 <li>
                     <a href="https://www.mhlw.go.jp/content/10808000/001637094.pdf" target="_blank">📄 これまでの議論の整理（公聴会資料）</a>
-                    <span class="desc">PDF — 第643回中医協総会（2026年1月21日）</span>
+                    <span class="desc">外部PDF — 第643回中医協総会（2026/1/21）— 厚労省サイト</span>
                 </li>
                 <li>
                     <a href="https://www.mhlw.go.jp/content/10808000/001646855.pdf" target="_blank">📄 議論の整理に関するパブリックコメント結果</a>
-                    <span class="desc">PDF — 国民からの意見とその対応</span>
+                    <span class="desc">外部PDF — 国民からの意見とその対応 — 厚労省サイト</span>
                 </li>
             </ul>
         </div>
@@ -109,15 +152,17 @@
         <div class="card">
             <h2>🔗 AI からの参照方法</h2>
             <div class="info-box">
-                <p>ChatGPT・Claude・Gemini などで以下のURLを指定してください：</p>
-                <br>
+                <p>ChatGPT・Claude・Gemini などで以下のURLを指定してください：</p><br>
                 <code>https://yuki0717-hub.github.io/shinryouhoshu-download-tool/output/ai-shinryou-db/</code>
+                <br><br>
+                <p>CSVインデックスを直接取得する場合：</p><br>
+                <code>https://yuki0717-hub.github.io/shinryouhoshu-download-tool/output/ai-shinryou-db/data/comprehensive_index.csv</code>
             </div>
         </div>
 
         <div class="source-note">
-            <strong>📌 出典：</strong>すべての資料は<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000106602.html" target="_blank">厚生労働省 診療報酬改定ページ</a>および<a href="https://www.mhlw.go.jp/stf/shingi/shingi-chuo_128154.html" target="_blank">中医協総会</a>から引用しています。<br>
-            ※ 告示・通知は2026年3月上旬に公表予定です。公表後に追加されます。
+            <strong>📌 出典：</strong>すべての資料は<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000106602.html" target="_blank">厚生労働省 診療報酬改定ページ</a>および<a href="https://www.mhlw.go.jp/stf/shingi/shingi-chuo_128154.html" target="_blank">中医協総会</a>から取得しています。<br>
+            ※ 告示・通知は2026年3月上旬に公表予定です。公表後に自動追加されます。
         </div>
     </div>
     <div class="footer">
