@@ -28,7 +28,7 @@ index 0000000000000000000000000000000000000000..21bf2ad6c947ed06d5eb83c86dcf3f51
 +from requests.adapters import HTTPAdapter
 +from urllib3.util.retry import Retry
 +
-+PORTAL_URL = "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/newpage_21053.html"
++PORTAL_URL = "https://www.mhlw.go.jp/stf/newpage_67729.html"
 +BASE_OUTPUT = Path("output") / "ai-shinryou-db"
 +TEXT_ROOT = BASE_OUTPUT / "text"
 +DATA_DIR = BASE_OUTPUT / "data"
