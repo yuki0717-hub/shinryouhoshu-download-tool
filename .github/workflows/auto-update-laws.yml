@@ -26,13 +26,14 @@ jobs:
       - name: Download laws
         run: python download_laws_and_tsuutatsu.py
       
+      - name: Download comprehensive shinryohoshu data
+        run: python download_comprehensive_shinryohoshu.py
+      
       - name: Commit and push
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add output/ai-hourei-db/
-          git diff --cached --quiet || git commit -m "Auto-update laws: $(date +'%Y-%m-%d %H:%M:%S UTC')"
-　　　- name: Download comprehensive shinryohoshu data
- 　　　 run: python download_comprehensive_shinryohoshu.py
-          
+          git add output/ai-shinryou-db/
+          git diff --cached --quiet || git commit -m "Auto-update laws and shinryohoshu data: $(date +'%Y-%m-%d %H:%M:%S UTC')"
           git push origin main
