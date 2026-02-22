@@ -22,6 +22,9 @@ from bs4 import BeautifulSoup
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
+# ============================================================
+# 定数
+# ============================================================
 PORTAL_URL = "https://www.mhlw.go.jp/stf/newpage_67729.html"
 BASE_OUTPUT = Path("output") / "ai-shinryou-db"
 TEXT_ROOT = BASE_OUTPUT / "text"
@@ -65,10 +68,16 @@ CATEGORY_RULES = [
 
 RELEVANT_KEYWORDS = {
     "診療報酬", "改定", "通知", "施設基準", "疑義", "DPC", "PDPS",
-    "薬価", "医療機器", "材料価格", "地方厚生局", "特例", "臨時", "調剤", "医科", "歯科",
+    "薬価", "医療機器", "材料価格", "地方厚生局", "特例", "臨時",
+    "調剤", "医科", "歯科", "点数表", "告示", "省令", "答申",
+    "諮問", "基本方針", "中医協", "公聴会", "パブリックコメント",
+    "個別改定", "ベースアップ", "届出", "報酬",
 }
 
 
+# ============================================================
+# データクラス
+# ============================================================
 @dataclass
 class LinkItem:
     text: str
@@ -87,6 +96,9 @@ class DownloadRecord:
     note: str
 
 
+# ============================================================
+# ユーティリティ
+# ============================================================
 def ensure_directories() -> None:
     for directory in (TEXT_ROOT, DATA_DIR, METADATA_DIR):
         directory.mkdir(parents=True, exist_ok=True)
@@ -96,13 +108,13 @@ def configure_logger() -> logging.Logger:
     logger = logging.getLogger("comprehensive_shinryohoshu")
     logger.setLevel(logging.INFO)
     logger.handlers.clear()
-    formatter = logging.Formatter("[%(asctime)s] %(levelname)s %(message)s", "%Y-%m-%d %H:%M:%S")
-    file_handler = logging.FileHandler(LOG_FILE, mode="w", encoding="utf-8")
-    file_handler.setFormatter(formatter)
-    stream_handler = logging.StreamHandler()
-    stream_handler.setFormatter(formatter)
-    logger.addHandler(file_handler)
-    logger.addHandler(stream_handler)
+    fmt = logging.Formatter("[%(asctime)s] %(levelname)s %(message)s", "%Y-%m-%d %H:%M:%S")
+    fh = logging.FileHandler(LOG_FILE, mode="w", encoding="utf-8")
+    fh.setFormatter(fmt)
+    sh = logging.StreamHandler()
+    sh.setFormatter(fmt)
+    logger.addHandler(fh)
+    logger.addHandler(sh)
     return logger
 
 
@@ -146,12 +158,19 @@ def detect_category(text: str) -> Tuple[str, str]:
 
 def is_relevant_link(text: str, url: str) -> bool:
     haystack = f"{text} {url}".lower()
-    return any(keyword.lower() in haystack for keyword in RELEVANT_KEYWORDS)
+    return any(kw.lower() in haystack for kw in RELEVANT_KEYWORDS)
 
 
+# ============================================================
+# リンク抽出（★ エンコーディング修正済み）
+# ============================================================
 def extract_links(session: requests.Session, logger: logging.Logger) -> List[LinkItem]:
     response = session.get(PORTAL_URL, timeout=TIMEOUT_SECONDS)
     response.raise_for_status()
+
+    # ★ 厚労省サイトのエンコーディングを正しく検出
+    response.encoding = response.apparent_encoding
+
     soup = BeautifulSoup(response.text, "lxml")
     links: List[LinkItem] = []
     seen: Set[str] = set()
@@ -174,6 +193,9 @@ def save_link_snapshot(links: Iterable[LinkItem]) -> None:
     LINKS_JSON.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
+# ============================================================
+# ダウンロード処理
+# ============================================================
 def choose_extension(url: str, content_type: str) -> str:
     parsed = urlparse(url)
     suffix = Path(parsed.path).suffix.lower()
@@ -192,25 +214,30 @@ def choose_extension(url: str, content_type: str) -> str:
     return ".bin"
 
 
-def stream_download_with_hash(session: requests.Session, url: str, output_path: Path) -> Tuple[float, str, str]:
-    with session.get(url, timeout=TIMEOUT_SECONDS, stream=True) as response:
-        response.raise_for_status()
-        content_type = response.headers.get("Content-Type", "").lower()
+def stream_download_with_hash(
+    session: requests.Session, url: str, output_path: Path
+) -> Tuple[float, str, str]:
+    with session.get(url, timeout=TIMEOUT_SECONDS, stream=True) as resp:
+        resp.raise_for_status()
+        content_type = resp.headers.get("Content-Type", "").lower()
         hasher = hashlib.sha256()
-        with output_path.open("wb") as file_obj:
-            for chunk in response.iter_content(chunk_size=CHUNK_SIZE):
+        with output_path.open("wb") as f:
+            for chunk in resp.iter_content(chunk_size=CHUNK_SIZE):
                 if not chunk:
                     continue
-                file_obj.write(chunk)
+                f.write(chunk)
                 hasher.update(chunk)
     size_kb = round(output_path.stat().st_size / 1024, 1)
     return size_kb, hasher.hexdigest(), content_type
 
 
-def html_to_text(session: requests.Session, url: str, output_path: Path) -> Tuple[float, str]:
-    response = session.get(url, timeout=TIMEOUT_SECONDS)
-    response.raise_for_status()
-    soup = BeautifulSoup(response.text, "lxml")
+def html_to_text(
+    session: requests.Session, url: str, output_path: Path
+) -> Tuple[float, str]:
+    resp = session.get(url, timeout=TIMEOUT_SECONDS)
+    resp.raise_for_status()
+    resp.encoding = resp.apparent_encoding  # ★ ここも修正
+    soup = BeautifulSoup(resp.text, "lxml")
     for tag in soup.select("script, style, noscript"):
         tag.decompose()
     text = normalize_text(soup.get_text("\n", strip=True))
@@ -220,94 +247,138 @@ def html_to_text(session: requests.Session, url: str, output_path: Path) -> Tupl
     return size_kb, digest
 
 
+# ============================================================
+# メタデータ・CSV 出力
+# ============================================================
 def write_structure_metadata(records: List[DownloadRecord]) -> None:
     structure: Dict[str, Dict[str, int]] = {}
-    for record in records:
-        structure.setdefault(record.year, {})
-        structure[record.year].setdefault(record.category, 0)
-        structure[record.year][record.category] += 1
+    for rec in records:
+        structure.setdefault(rec.year, {})
+        structure[rec.year].setdefault(rec.category, 0)
+        structure[rec.year][rec.category] += 1
     payload = {
         "portal_url": PORTAL_URL,
         "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "counts": structure,
         "total_records": len(records),
     }
-    STRUCTURE_JSON.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    STRUCTURE_JSON.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
 
 
 def save_records(records: List[DownloadRecord]) -> None:
     if not records:
         INDEX_CSV.write_text("", encoding="utf-8")
         return
-    df = pd.DataFrame([record.__dict__ for record in records])
+    df = pd.DataFrame([r.__dict__ for r in records])
     rename_map = {
-        "year": "年度", "category": "カテゴリ", "file_name": "ファイル名",
-        "url": "URL", "downloaded_at": "ダウンロード日時",
-        "file_size_kb": "ファイルサイズ(KB)", "status": "ステータス", "note": "備考",
+        "year": "年度",
+        "category": "カテゴリ",
+        "file_name": "ファイル名",
+        "url": "URL",
+        "downloaded_at": "ダウンロード日時",
+        "file_size_kb": "ファイルサイズ(KB)",
+        "status": "ステータス",
+        "note": "備考",
     }
     df.rename(columns=rename_map, inplace=True)
     df.to_csv(INDEX_CSV, index=False, encoding="utf-8-sig", quoting=csv.QUOTE_MINIMAL)
 
 
-def process_links(session: requests.Session, links: List[LinkItem], logger: logging.Logger, limit: Optional[int]) -> List[DownloadRecord]:
-    relevant_links = [link for link in links if is_relevant_link(link.text, link.url)]
+# ============================================================
+# リンク処理ループ
+# ============================================================
+def process_links(
+    session: requests.Session,
+    links: List[LinkItem],
+    logger: logging.Logger,
+    limit: Optional[int],
+) -> List[DownloadRecord]:
+    relevant = [lnk for lnk in links if is_relevant_link(lnk.text, lnk.url)]
     if limit is not None:
-        relevant_links = relevant_links[:limit]
+        relevant = relevant[:limit]
+
     records: List[DownloadRecord] = []
     seen_names: Set[str] = set()
     seen_hashes: Set[str] = set()
-    total = len(relevant_links)
-    logger.info("対象リンク数: %d", total)
-    for index, link in enumerate(relevant_links, start=1):
+    total = len(relevant)
+    logger.info("対象リンク数: %d (全リンク %d 中)", total, len(links))
+
+    for idx, link in enumerate(relevant, start=1):
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         date_token = datetime.now().strftime("%Y%m%d")
-        descriptor = normalize_text(link.text or Path(urlparse(link.url).path).name)
+        descriptor = normalize_text(
+            link.text or Path(urlparse(link.url).path).name
+        )
         year = detect_year(descriptor)
-        category_slug, category_label = detect_category(descriptor)
-        output_dir = TEXT_ROOT / year / category_slug
-        output_dir.mkdir(parents=True, exist_ok=True)
-        print(f"[{index}/{total}] Downloading: {descriptor}")
-        logger.info("[%d/%d] start: %s", index, total, link.url)
+        cat_slug, cat_label = detect_category(descriptor)
+        out_dir = TEXT_ROOT / year / cat_slug
+        out_dir.mkdir(parents=True, exist_ok=True)
+
+        print(f"[{idx}/{total}] {descriptor[:80]}")
+        logger.info("[%d/%d] start: %s", idx, total, link.url)
+
+        # HEAD でコンテンツタイプを取得
         try:
-            head_response = session.head(link.url, timeout=TIMEOUT_SECONDS, allow_redirects=True)
-            content_type = head_response.headers.get("Content-Type", "").lower()
+            head = session.head(link.url, timeout=TIMEOUT_SECONDS, allow_redirects=True)
+            ctype = head.headers.get("Content-Type", "").lower()
         except requests.RequestException:
-            content_type = ""
-        ext = choose_extension(link.url, content_type)
-        base_name = sanitize_for_filename(f"{year}_{descriptor}_{date_token}")
-        file_name = f"{base_name}{ext}"
-        if file_name in seen_names:
-            records.append(DownloadRecord(year, category_label, file_name, link.url, now, 0.0, "スキップ", "ファイル名重複"))
+            ctype = ""
+
+        ext = choose_extension(link.url, ctype)
+        base = sanitize_for_filename(f"{year}_{descriptor}_{date_token}")
+        fname = f"{base}{ext}"
+
+        if fname in seen_names:
+            records.append(
+                DownloadRecord(year, cat_label, fname, link.url, now, 0.0, "スキップ", "ファイル名重複")
+            )
             continue
-        path = output_dir / file_name
+
+        path = out_dir / fname
         try:
-            if ext == ".txt" and ("html" in content_type or not Path(urlparse(link.url).path).suffix):
-                size_kb, file_hash = html_to_text(session, link.url, path)
+            if ext == ".txt" and ("html" in ctype or not Path(urlparse(link.url).path).suffix):
+                size_kb, fhash = html_to_text(session, link.url, path)
             else:
-                size_kb, file_hash, detected_type = stream_download_with_hash(session, link.url, path)
-                if ext == ".bin" and "html" in detected_type:
+                size_kb, fhash, detected = stream_download_with_hash(session, link.url, path)
+                if ext == ".bin" and "html" in detected:
                     path.unlink(missing_ok=True)
                     path = path.with_suffix(".txt")
-                    file_name = path.name
-                    size_kb, file_hash = html_to_text(session, link.url, path)
-            if file_hash in seen_hashes:
+                    fname = path.name
+                    size_kb, fhash = html_to_text(session, link.url, path)
+
+            if fhash in seen_hashes:
                 path.unlink(missing_ok=True)
-                records.append(DownloadRecord(year, category_label, file_name, link.url, now, 0.0, "スキップ", "ハッシュ重複"))
+                records.append(
+                    DownloadRecord(year, cat_label, fname, link.url, now, 0.0, "スキップ", "ハッシュ重複")
+                )
                 continue
-            seen_names.add(file_name)
-            seen_hashes.add(file_hash)
-            records.append(DownloadRecord(year, category_label, file_name, link.url, now, size_kb, "成功", descriptor))
+
+            seen_names.add(fname)
+            seen_hashes.add(fhash)
+            records.append(
+                DownloadRecord(year, cat_label, fname, link.url, now, size_kb, "成功", descriptor[:200])
+            )
             logger.info("saved: %s (%.1f KB)", path.as_posix(), size_kb)
+
         except Exception as exc:
             logger.exception("download failed: %s", link.url)
-            records.append(DownloadRecord(year, category_label, file_name, link.url, now, 0.0, "失敗", f"{type(exc).__name__}: {exc}"))
-            time.sleep(1)
+            records.append(
+                DownloadRecord(year, cat_label, fname, link.url, now, 0.0, "失敗", f"{type(exc).__name__}: {exc}")
+            )
+
+        time.sleep(1)  # サーバー負荷軽減
+
     return records
 
 
+# ============================================================
+# CLI エントリポイント
+# ============================================================
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="診療報酬関連資料の包括ダウンローダー")
-    parser.add_argument("--limit", type=int, default=None, help="処理するリンク数上限（テスト用）")
+    parser.add_argument("--limit", type=int, default=None, help="処理リンク数上限（テスト用）")
     return parser.parse_args()
 
 
@@ -316,15 +387,23 @@ def main() -> None:
     ensure_directories()
     logger = configure_logger()
     session = build_session()
-    logger.info("Start comprehensive downloader")
+
+    logger.info("=== Start comprehensive downloader ===")
+    logger.info("Portal: %s", PORTAL_URL)
+
     links = extract_links(session, logger)
     save_link_snapshot(links)
+
     records = process_links(session, links, logger, args.limit)
     save_records(records)
     write_structure_metadata(records)
-    success_count = sum(1 for item in records if item.status == "成功")
-    logger.info("完了: success=%d, total=%d", success_count, len(records))
-    print(f"Done. success={success_count}/{len(records)}")
+
+    success = sum(1 for r in records if r.status == "成功")
+    skip = sum(1 for r in records if r.status == "スキップ")
+    fail = sum(1 for r in records if r.status == "失敗")
+
+    logger.info("=== 完了: 成功=%d スキップ=%d 失敗=%d 合計=%d ===", success, skip, fail, len(records))
+    print(f"\nDone. 成功={success} スキップ={skip} 失敗={fail} / 合計={len(records)}")
     print(f"CSV: {INDEX_CSV.as_posix()}")
 
 
