@@ -1,0 +1,35 @@
+name: Auto-update Laws and Tsuutatsu
+
+on:
+  schedule:
+    - cron: '0 4 * * *'  # 毎日 UTC 04:00 実行（日本時間 13:00）
+  workflow_dispatch:
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: main
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+      
+      - name: Download laws
+        run: python download_laws_and_tsuutatsu.py
+      
+      - name: Commit and push
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add output/ai-hourei-db/
+          git diff --cached --quiet || git commit -m "Auto-update laws: $(date +'%Y-%m-%d %H:%M:%S UTC')"
+          git push origin main
