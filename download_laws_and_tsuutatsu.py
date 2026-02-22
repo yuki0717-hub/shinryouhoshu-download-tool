@@ -36,10 +36,10 @@ class LawTarget:
 TARGETS: List[LawTarget] = [
     LawTarget("健康保険法", "法律", "211AC0000000070", "kenko-hoken-hou.txt"),
     LawTarget("健康保険法施行令", "施行令", "211IO0000000243", "kenko-hoken-seirei.txt"),
-    LawTarget("健康保険法施行規則", "施行規則", "211M10000008036", "kenko-hoken-kisoku.txt"),
+    LawTarget("健康保険法施行規則", "施行規則", "215M10000008036", "kenko-hoken-kisoku.txt"),
     LawTarget("保険医療機関及び保険医療養担当規則", "省令", "332M50000100015", "ryoutan-kisoku.txt"),
     LawTarget("医療法", "法律", "323AC0000000205", "iryo-hou.txt"),
-    LawTarget("医療法施行令", "施行令", "323IO0000000326", "iryo-seirei.txt"),
+    LawTarget("医療法施行令", "施行令", "323CO0000000326", "iryo-seirei.txt"),
     LawTarget("医療法施行規則", "施行規則", "323M40000100050", "iryo-kisoku.txt"),
     LawTarget("医師法", "法律", "323AC0000000201", "ishi-hou.txt"),
     LawTarget("高齢者の医療の確保に関する法律", "法律", "357AC0000000080", "koureisha-iryo-hou.txt"),
