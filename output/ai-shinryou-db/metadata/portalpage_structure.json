@@ -1,6 +1,16 @@
 {
   "portal_url": "https://www.mhlw.go.jp/stf/newpage_67729.html",
-  "generated_at": "2026-02-22 11:19:54",
-  "counts": {},
-  "total_records": 0
+  "generated_at": "2026-02-22 11:30:00",
+  "counts": {
+    "2026": {
+      "医療機器保険適用通知": 1,
+      "その他関連資料": 6,
+      "特例措置・臨時改定": 1,
+      "疑義解釈": 2
+    },
+    "2025": {
+      "基本方針": 1
+    }
+  },
+  "total_records": 11
 }
