@@ -1,5 +1,71 @@
 <!DOCTYPE html>
-<html>
-<head><title>関連法令</title></head>
-<body><h1>関連法令データベース</h1></body>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>関連法令 - AI診療報酬DB</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Hiragino Sans', sans-serif; background: #0a0a1a; color: #e0e0e0; min-height: 100vh; }
+        .header { background: linear-gradient(135deg, #3e1a1a, #b71c1c); padding: 30px 20px; text-align: center; border-bottom: 2px solid #ef5350; }
+        .header h1 { font-size: 1.8em; color: #fff; margin-bottom: 8px; }
+        .header p { color: #e0a0a0; font-size: 0.95em; }
+        .back-link { display: inline-block; margin: 20px; padding: 10px 20px; background: #2d2d5e; color: #8b8bff; text-decoration: none; border-radius: 8px; transition: background 0.3s; }
+        .back-link:hover { background: #3d3d7e; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .card { background: #12122a; border: 1px solid #2a2a5a; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+        .card h2 { color: #ef5350; font-size: 1.3em; margin-bottom: 12px; border-bottom: 1px solid #2a2a5a; padding-bottom: 8px; }
+        .card p { line-height: 1.8; color: #b0b0d0; }
+        .file-list { list-style: none; padding: 0; }
+        .file-list li { padding: 12px 16px; margin: 8px 0; background: #1a1a3e; border-radius: 8px; border-left: 3px solid #ef5350; }
+        .status-badge { display: inline-block; padding: 4px 12px; background: #3a1b1b; color: #ef5350; border-radius: 12px; font-size: 0.85em; margin-top: 8px; }
+        .info-box { background: #1a1a3e; border: 1px solid #3a3a6a; border-radius: 8px; padding: 16px; margin: 16px 0; }
+        .info-box code { background: #2a2a5a; padding: 2px 8px; border-radius: 4px; color: #ef5350; font-size: 0.9em; }
+        .footer { text-align: center; padding: 30px; color: #666; font-size: 0.85em; border-top: 1px solid #2a2a5a; margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📕 関連法令データベース</h1>
+        <p>健康保険法・療養担当規則など診療報酬に関する法令集</p>
+    </div>
+    <a href="https://yuki0717-hub.github.io/shinryouhoshu-download-tool/" class="back-link">← トップページに戻る</a>
+    <div class="container">
+        <div class="card">
+            <h2>📋 データベース概要</h2>
+            <p>診療報酬制度の根拠となる法令・省令・告示を収集し、AI（LLM）から参照可能な形式で構造化しています。e-Gov法令検索から自動取得しています。</p>
+            <span class="status-badge">✅ 毎日自動更新</span>
+        </div>
+
+        <div class="card">
+            <h2>📁 収録データ</h2>
+            <ul class="file-list">
+                <li>📄 健康保険法</li>
+                <li>📄 保険医療機関及び保険医療養担当規則（療担規則）</li>
+                <li>📄 診療報酬の算定方法（告示）</li>
+                <li>📄 介護保険法（関連部分）</li>
+                <li>📄 医療法（関連部分）</li>
+                <li>📄 高齢者の医療の確保に関する法律</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>🔗 AI からの参照方法</h2>
+            <div class="info-box">
+                <p>ChatGPT・Claude・Gemini などで以下のURLを指定してください：</p>
+                <br>
+                <code>https://yuki0717-hub.github.io/shinryouhoshu-download-tool/output/ai-hourei-db/</code>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📊 データ形式</h2>
+            <p>JSON / TXT 形式で提供。GitHub Actions により e-Gov 法令検索等から定期的に自動取得・更新されます。</p>
+        </div>
+    </div>
+    <div class="footer">
+        <p>© 2026 診療報酬データベース | GitHub Pages で自動配信</p>
+    </div>
+</body>
 </html>
+
