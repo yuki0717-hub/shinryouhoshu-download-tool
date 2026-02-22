@@ -8,31 +8,31 @@ on:
 jobs:
   download:
     runs-on: ubuntu-latest
-    
     steps:
       - uses: actions/checkout@v3
         with:
           ref: main
-      
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      
+
       - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-      
+        run: pip install requests beautifulsoup4 pandas lxml urllib3
+
       - name: Download laws
         run: python download_laws_and_tsuutatsu.py
-      
-      - name: Download comprehensive shinryohoshu data
+        continue-on-error: true
+
+      - name: Download comprehensive shinryohoshu
         run: python download_comprehensive_shinryohoshu.py
-      
+        continue-on-error: true
+
       - name: Commit and push
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add output/
-          git diff --cached --quiet || git commit -m "Auto-update data: $(date +'%Y-%m-%d %H:%M:%S UTC')"
-          git push origin main
+          git add output/ || true
+          git diff --cached --quiet || git commit -m "Auto-update: $(date +'%Y-%m-%d %H:%M:%S UTC')"
+          git push origin main || true
