@@ -10,42 +10,85 @@
         .header { background: linear-gradient(135deg, #1a3a1a, #1b5e20); padding: 30px 20px; text-align: center; border-bottom: 2px solid #4caf50; }
         .header h1 { font-size: 1.8em; color: #fff; margin-bottom: 8px; }
         .header p { color: #a0cca0; font-size: 0.95em; }
-        .back-link { display: inline-block; margin: 20px; padding: 10px 20px; background: #2d2d5e; color: #8b8bff; text-decoration: none; border-radius: 8px; transition: background 0.3s; }
+        .back-link { display: inline-block; margin: 20px; padding: 10px 20px; background: #2d2d5e; color: #8b8bff; text-decoration: none; border-radius: 8px; }
         .back-link:hover { background: #3d3d7e; }
         .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         .card { background: #12122a; border: 1px solid #2a2a5a; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
         .card h2 { color: #4caf50; font-size: 1.3em; margin-bottom: 12px; border-bottom: 1px solid #2a2a5a; padding-bottom: 8px; }
         .card p { line-height: 1.8; color: #b0b0d0; }
         .file-list { list-style: none; padding: 0; }
-        .file-list li { padding: 12px 16px; margin: 8px 0; background: #1a1a3e; border-radius: 8px; border-left: 3px solid #4caf50; }
+        .file-list li { padding: 14px 16px; margin: 8px 0; background: #1a1a3e; border-radius: 8px; border-left: 3px solid #4caf50; }
+        .file-list li a { color: #66bb6a; text-decoration: none; font-weight: bold; }
+        .file-list li a:hover { color: #fff; text-decoration: underline; }
+        .file-list li .desc { display: block; color: #888; font-size: 0.85em; margin-top: 4px; }
         .status-badge { display: inline-block; padding: 4px 12px; background: #1b3a1b; color: #4caf50; border-radius: 12px; font-size: 0.85em; margin-top: 8px; }
         .info-box { background: #1a1a3e; border: 1px solid #3a3a6a; border-radius: 8px; padding: 16px; margin: 16px 0; }
-        .info-box code { background: #2a2a5a; padding: 2px 8px; border-radius: 4px; color: #4caf50; font-size: 0.9em; }
+        .info-box code { background: #2a2a5a; padding: 2px 8px; border-radius: 4px; color: #4caf50; font-size: 0.9em; word-break: break-all; }
+        .source-note { background: #1a1a2e; border: 1px solid #333366; border-radius: 8px; padding: 16px; margin-top: 16px; font-size: 0.9em; color: #9999bb; }
+        .source-note a { color: #4caf50; }
         .footer { text-align: center; padding: 30px; color: #666; font-size: 0.85em; border-top: 1px solid #2a2a5a; margin-top: 40px; }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>💰 点数表マスターデータベース</h1>
-        <p>診療報酬点数表（医科・歯科・調剤）の構造化データ</p>
+        <p>診療報酬点数表マスター・電子点数表・各種コードマスター</p>
     </div>
     <a href="https://yuki0717-hub.github.io/shinryouhoshu-download-tool/" class="back-link">← トップページに戻る</a>
     <div class="container">
         <div class="card">
             <h2>📋 データベース概要</h2>
-            <p>診療報酬点数表のマスターデータを構造化し、AI（LLM）から直接参照・検索できる形式で提供しています。医科・歯科・調剤の各点数表を網羅しています。</p>
-            <span class="status-badge">✅ 毎日自動更新</span>
+            <p>厚生労働省「診療報酬情報提供サービス」および社会保険診療報酬支払基金が公開するマスターデータ・電子点数表へのリンク集です。令和8年度改定対応版を含みます。</p>
+            <span class="status-badge">✅ 稼働中</span>
         </div>
 
         <div class="card">
-            <h2>📁 収録データ</h2>
+            <h2>📁 厚生労働省 基本マスターダウンロード</h2>
             <ul class="file-list">
-                <li>📄 医科診療報酬点数表</li>
-                <li>📄 歯科診療報酬点数表</li>
-                <li>📄 調剤報酬点数表</li>
-                <li>📄 訪問看護療養費に係る点数表</li>
-                <li>📄 診療報酬コードマスター</li>
-                <li>📄 傷病名マスター</li>
+                <li>
+                    <a href="https://shinryohoshu.mhlw.go.jp/shinryohoshu/downloadMenu/" target="_blank">📄 基本マスター全件ダウンロード</a>
+                    <span class="desc">医科診療行為・医薬品・特定器材・傷病名マスター等</span>
+                </li>
+                <li>
+                    <a href="https://shinryohoshu.mhlw.go.jp/shinryohoshu/kaitei/doKaiteiR08" target="_blank">📄 令和8年度改定対応マスター</a>
+                    <span class="desc">R8改定に対応したマスターのダウンロード</span>
+                </li>
+                <li>
+                    <a href="https://shinryohoshu.mhlw.go.jp/shinryohoshu/searchMenu" target="_blank">📄 マスター検索（オンライン）</a>
+                    <span class="desc">診療行為・医薬品等のコードをオンラインで検索</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>📁 支払基金 電子点数表</h2>
+            <ul class="file-list">
+                <li>
+                    <a href="https://www.ssk.or.jp/seikyushiharai/tensuhyo/ikashika/index.html" target="_blank">📄 医科・歯科 電子点数表</a>
+                    <span class="desc">社会保険診療報酬支払基金 — ZIP形式でダウンロード可能</span>
+                </li>
+                <li>
+                    <a href="https://www.ssk.or.jp/seikyushiharai/tensuhyo/index.html" target="_blank">📄 電子点数表トップページ</a>
+                    <span class="desc">調剤・訪問看護等を含む全電子点数表</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>📁 マスター種別一覧</h2>
+            <ul class="file-list">
+                <li>
+                    <a href="https://shinryohoshu.mhlw.go.jp/shinryohoshu/searchMenu/doSearchInputSp" target="_blank">📄 医科診療行為マスター</a>
+                    <span class="desc">診療行為コード・名称・点数の検索</span>
+                </li>
+                <li>
+                    <a href="https://shinryohoshu.mhlw.go.jp/shinryohoshu/searchMenu/doSearchKihonMaster" target="_blank">📄 基本マスター一覧</a>
+                    <span class="desc">傷病名・修飾語・コメント等の各種マスター</span>
+                </li>
+                <li>
+                    <a href="https://shinryohoshu.mhlw.go.jp/" target="_blank">📄 診療報酬情報提供サービス トップ</a>
+                    <span class="desc">厚生労働省の公式マスター提供サイト</span>
+                </li>
             </ul>
         </div>
 
@@ -58,14 +101,12 @@
             </div>
         </div>
 
-        <div class="card">
-            <h2>📊 データ形式</h2>
-            <p>JSON / CSV / TXT 形式で提供。GitHub Actions により定期的に厚生労働省の公開データから自動取得・構造化されます。</p>
+        <div class="source-note">
+            <strong>📌 出典：</strong><a href="https://shinryohoshu.mhlw.go.jp/" target="_blank">厚生労働省 診療報酬情報提供サービス</a>および<a href="https://www.ssk.or.jp/" target="_blank">社会保険診療報酬支払基金</a>の公開データです。
         </div>
     </div>
     <div class="footer">
-        <p>© 2026 診療報酬データベース | GitHub Pages で自動配信</p>
+        <p>© 2026 診療報酬データベース | 最終確認: 2026-02-22</p>
     </div>
 </body>
 </html>
-
