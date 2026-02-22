@@ -32,4 +32,7 @@ jobs:
           git config user.email "actions@github.com"
           git add output/ai-hourei-db/
           git diff --cached --quiet || git commit -m "Auto-update laws: $(date +'%Y-%m-%d %H:%M:%S UTC')"
+　　　- name: Download comprehensive shinryohoshu data
+ 　　　 run: python download_comprehensive_shinryohoshu.py
+          
           git push origin main
