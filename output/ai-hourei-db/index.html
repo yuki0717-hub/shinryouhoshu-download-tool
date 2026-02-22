@@ -10,17 +10,22 @@
         .header { background: linear-gradient(135deg, #3e1a1a, #b71c1c); padding: 30px 20px; text-align: center; border-bottom: 2px solid #ef5350; }
         .header h1 { font-size: 1.8em; color: #fff; margin-bottom: 8px; }
         .header p { color: #e0a0a0; font-size: 0.95em; }
-        .back-link { display: inline-block; margin: 20px; padding: 10px 20px; background: #2d2d5e; color: #8b8bff; text-decoration: none; border-radius: 8px; transition: background 0.3s; }
+        .back-link { display: inline-block; margin: 20px; padding: 10px 20px; background: #2d2d5e; color: #8b8bff; text-decoration: none; border-radius: 8px; }
         .back-link:hover { background: #3d3d7e; }
         .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         .card { background: #12122a; border: 1px solid #2a2a5a; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
         .card h2 { color: #ef5350; font-size: 1.3em; margin-bottom: 12px; border-bottom: 1px solid #2a2a5a; padding-bottom: 8px; }
         .card p { line-height: 1.8; color: #b0b0d0; }
         .file-list { list-style: none; padding: 0; }
-        .file-list li { padding: 12px 16px; margin: 8px 0; background: #1a1a3e; border-radius: 8px; border-left: 3px solid #ef5350; }
+        .file-list li { padding: 14px 16px; margin: 8px 0; background: #1a1a3e; border-radius: 8px; border-left: 3px solid #ef5350; }
+        .file-list li a { color: #ef9a9a; text-decoration: none; font-weight: bold; }
+        .file-list li a:hover { color: #fff; text-decoration: underline; }
+        .file-list li .desc { display: block; color: #888; font-size: 0.85em; margin-top: 4px; }
         .status-badge { display: inline-block; padding: 4px 12px; background: #3a1b1b; color: #ef5350; border-radius: 12px; font-size: 0.85em; margin-top: 8px; }
         .info-box { background: #1a1a3e; border: 1px solid #3a3a6a; border-radius: 8px; padding: 16px; margin: 16px 0; }
-        .info-box code { background: #2a2a5a; padding: 2px 8px; border-radius: 4px; color: #ef5350; font-size: 0.9em; }
+        .info-box code { background: #2a2a5a; padding: 2px 8px; border-radius: 4px; color: #ef5350; font-size: 0.9em; word-break: break-all; }
+        .source-note { background: #1a1a2e; border: 1px solid #333366; border-radius: 8px; padding: 16px; margin-top: 16px; font-size: 0.9em; color: #9999bb; }
+        .source-note a { color: #ef5350; }
         .footer { text-align: center; padding: 30px; color: #666; font-size: 0.85em; border-top: 1px solid #2a2a5a; margin-top: 40px; }
     </style>
 </head>
@@ -33,19 +38,65 @@
     <div class="container">
         <div class="card">
             <h2>📋 データベース概要</h2>
-            <p>診療報酬制度の根拠となる法令・省令・告示を収集し、AI（LLM）から参照可能な形式で構造化しています。e-Gov法令検索から自動取得しています。</p>
-            <span class="status-badge">✅ 毎日自動更新</span>
+            <p>診療報酬制度の根拠となる法律・政省令・告示を、e-Gov法令検索等の公式ソースからリンク集として提供しています。AI（LLM）からの参照にも対応しています。</p>
+            <span class="status-badge">✅ 稼働中</span>
         </div>
 
         <div class="card">
-            <h2>📁 収録データ</h2>
+            <h2>📁 主要法令（e-Gov法令検索）</h2>
             <ul class="file-list">
-                <li>📄 健康保険法</li>
-                <li>📄 保険医療機関及び保険医療養担当規則（療担規則）</li>
-                <li>📄 診療報酬の算定方法（告示）</li>
-                <li>📄 介護保険法（関連部分）</li>
-                <li>📄 医療法（関連部分）</li>
-                <li>📄 高齢者の医療の確保に関する法律</li>
+                <li>
+                    <a href="https://elaws.e-gov.go.jp/document?lawid=211AC0000000070" target="_blank">📄 健康保険法</a>
+                    <span class="desc">大正11年法律第70号 — 医療保険制度の基本法</span>
+                </li>
+                <li>
+                    <a href="https://elaws.e-gov.go.jp/document?lawid=332M50000100015" target="_blank">📄 保険医療機関及び保険医療養担当規則（療担規則）</a>
+                    <span class="desc">昭和32年厚生省令第15号 — 保険診療のルール</span>
+                </li>
+                <li>
+                    <a href="https://elaws.e-gov.go.jp/document?lawid=323AC0000000192" target="_blank">📄 医療法</a>
+                    <span class="desc">昭和23年法律第205号 — 医療提供体制の基本法</span>
+                </li>
+                <li>
+                    <a href="https://elaws.e-gov.go.jp/document?lawid=357AC0000000080" target="_blank">📄 高齢者の医療の確保に関する法律</a>
+                    <span class="desc">昭和57年法律第80号 — 後期高齢者医療制度等</span>
+                </li>
+                <li>
+                    <a href="https://elaws.e-gov.go.jp/document?lawid=409AC0000000123" target="_blank">📄 介護保険法</a>
+                    <span class="desc">平成9年法律第123号 — 介護保険制度の基本法</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>📁 告示・通知等</h2>
+            <ul class="file-list">
+                <li>
+                    <a href="https://www.mhlw.go.jp/stf/newpage_70414.html" target="_blank">📄 診療報酬の算定方法（令和8年度答申）</a>
+                    <span class="desc">医科・歯科・調剤の点数表告示（答申別紙）</span>
+                </li>
+                <li>
+                    <a href="https://www.mhlw.go.jp/hourei/" target="_blank">📄 厚生労働省 法令等データベース</a>
+                    <span class="desc">通知・通達の検索（厚労省公式）</span>
+                </li>
+                <li>
+                    <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000106602.html" target="_blank">📄 診療報酬改定 総合ページ</a>
+                    <span class="desc">過去の改定告示・通知のアーカイブ</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>📁 法令検索ツール</h2>
+            <ul class="file-list">
+                <li>
+                    <a href="https://elaws.e-gov.go.jp/" target="_blank">📄 e-Gov法令検索</a>
+                    <span class="desc">日本の現行法令をオンラインで検索・閲覧</span>
+                </li>
+                <li>
+                    <a href="https://www.mhlw.go.jp/hourei/" target="_blank">📄 厚生労働省法令等データベースサービス</a>
+                    <span class="desc">厚労省所管の通知・通達を検索</span>
+                </li>
             </ul>
         </div>
 
@@ -58,14 +109,13 @@
             </div>
         </div>
 
-        <div class="card">
-            <h2>📊 データ形式</h2>
-            <p>JSON / TXT 形式で提供。GitHub Actions により e-Gov 法令検索等から定期的に自動取得・更新されます。</p>
+        <div class="source-note">
+            <strong>📌 出典：</strong><a href="https://elaws.e-gov.go.jp/" target="_blank">e-Gov法令検索</a>および<a href="https://www.mhlw.go.jp/hourei/" target="_blank">厚生労働省法令等データベース</a>の公開情報です。<br>
+            ※ 令和8年度改定の告示・通知は2026年3月上旬に公表予定です。
         </div>
     </div>
     <div class="footer">
-        <p>© 2026 診療報酬データベース | GitHub Pages で自動配信</p>
+        <p>© 2026 診療報酬データベース | 最終確認: 2026-02-22</p>
     </div>
 </body>
 </html>
-
