@@ -1,0 +1,196 @@
+{
+  "sources": [
+    {
+      "name": "令和8年度（2026年度）診療報酬改定資料",
+      "stage": "第1段階",
+      "category": "診療報酬改定_R8",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/newpage_21053.html",
+      "include_keywords": ["令和8", "2026", "診療報酬", "改定", "点数表", "施設基準", "疑義"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "令和7年度（2025年度）薬価改定資料",
+      "stage": "第1段階",
+      "category": "薬価改定_R7",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000188411_00053.html",
+      "include_keywords": ["令和7", "2025", "薬価", "基準", "材料価格"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "令和6年度（2024年度）診療報酬改定資料",
+      "stage": "第1段階",
+      "category": "診療報酬改定_R6",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000188411_00045.html",
+      "include_keywords": ["令和6", "2024", "診療報酬", "改定", "点数表", "施設基準", "疑義"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "令和5年度薬価改定資料",
+      "stage": "第1段階",
+      "category": "薬価改定_R5",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000188411_00038.html",
+      "include_keywords": ["令和5", "2023", "薬価", "改定"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "令和5年4月1日からの診療報酬上の措置",
+      "stage": "第1段階",
+      "category": "診療報酬措置_R5_4_1",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000188411_00039.html",
+      "include_keywords": ["令和5年4月1日", "措置", "診療報酬"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "令和4年度診療報酬改定（10月改定分）",
+      "stage": "第1段階",
+      "category": "診療報酬改定_R4_10",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000188411_00034.html",
+      "include_keywords": ["令和4", "10月", "改定", "診療報酬"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "DPC関連通知（全年度）",
+      "stage": "第2段階",
+      "category": "DPC通知",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000188411_00043.html",
+      "include_keywords": ["DPC", "通知", "包括評価"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "医療機器の保険適用関連通知",
+      "stage": "第2段階",
+      "category": "医療機器保険適用",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000188411_00044.html",
+      "include_keywords": ["医療機器", "保険適用", "通知"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "材料価格関連通知",
+      "stage": "第2段階",
+      "category": "材料価格通知",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000188411_00047.html",
+      "include_keywords": ["材料価格", "通知", "基準"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "疑義解釈Q&A集（全年度分）",
+      "stage": "第2段階",
+      "category": "疑義解釈QandA",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000188411_00049.html",
+      "include_keywords": ["疑義解釈", "Q&A", "事務連絡"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "診療報酬請求のてびき（医科・歯科・調剤）",
+      "stage": "第2段階",
+      "category": "請求のてびき",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000188411_00055.html",
+      "include_keywords": ["てびき", "医科", "歯科", "調剤"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "e-Gov: 健康保険法",
+      "stage": "第3段階",
+      "category": "法令_健康保険法",
+      "url": "https://elaws.e-gov.go.jp/document?lawid=333AC0000000070",
+      "include_keywords": ["健康保険法"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "e-Gov: 医療法",
+      "stage": "第3段階",
+      "category": "法令_医療法",
+      "url": "https://elaws.e-gov.go.jp/document?lawid=323AC0000000205",
+      "include_keywords": ["医療法"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "e-Gov: 健康保険法施行規則",
+      "stage": "第3段階",
+      "category": "法令_健康保険法施行規則",
+      "url": "https://elaws.e-gov.go.jp/document?lawid=332M50000100042",
+      "include_keywords": ["健康保険法施行規則"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "e-Gov: 医療法施行規則",
+      "stage": "第3段階",
+      "category": "法令_医療法施行規則",
+      "url": "https://elaws.e-gov.go.jp/document?lawid=323M40000100050",
+      "include_keywords": ["医療法施行規則"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "e-Gov: 高齢者の医療の確保に関する法律",
+      "stage": "第3段階",
+      "category": "法令_高齢者医療確保法",
+      "url": "https://elaws.e-gov.go.jp/document?lawid=357AC0000000080",
+      "include_keywords": ["高齢者の医療の確保"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "中医協 答申文書（過去3年）",
+      "stage": "第4段階",
+      "category": "中医協_答申",
+      "url": "https://www.mhlw.go.jp/stf/shingi/shingi-chuo_128154.html",
+      "include_keywords": ["答申", "中医協"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "中医協 議事録（過去3年）",
+      "stage": "第4段階",
+      "category": "中医協_議事録",
+      "url": "https://www.mhlw.go.jp/stf/shingi/shingi-chuo_128153.html",
+      "include_keywords": ["議事録", "中医協"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "中医協 審議会資料",
+      "stage": "第4段階",
+      "category": "中医協_審議会資料",
+      "url": "https://www.mhlw.go.jp/stf/shingi/shingi-chuo_128159.html",
+      "include_keywords": ["資料", "中医協", "総会"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "東京都 保険局事務連絡",
+      "stage": "第5段階",
+      "category": "地域_東京",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/tokyo.html",
+      "include_keywords": ["東京", "事務連絡", "保険"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "大阪府 保険局事務連絡",
+      "stage": "第5段階",
+      "category": "地域_大阪",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/osaka.html",
+      "include_keywords": ["大阪", "事務連絡", "保険"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "愛知県 保険局事務連絡",
+      "stage": "第5段階",
+      "category": "地域_愛知",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/aichi.html",
+      "include_keywords": ["愛知", "事務連絡", "保険"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "福岡県 保険局事務連絡",
+      "stage": "第5段階",
+      "category": "地域_福岡",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/fukuoka.html",
+      "include_keywords": ["福岡", "事務連絡", "保険"],
+      "exclude_keywords": []
+    },
+    {
+      "name": "北海道 保険局事務連絡",
+      "stage": "第5段階",
+      "category": "地域_北海道",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/hokkaido.html",
+      "include_keywords": ["北海道", "事務連絡", "保険"],
+      "exclude_keywords": []
+    }
+  ]
+}
