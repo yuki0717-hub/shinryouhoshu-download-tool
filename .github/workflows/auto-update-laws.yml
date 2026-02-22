@@ -2,7 +2,7 @@ name: Auto-update Laws and Tsuutatsu
 
 on:
   schedule:
-    - cron: '0 4 * * *'  # 毎日 UTC 04:00 実行（日本時間 13:00）
+    - cron: '0 4 * * *'
   workflow_dispatch:
 
 jobs:
@@ -33,7 +33,6 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add output/ai-hourei-db/
-          git add output/ai-shinryou-db/
-          git diff --cached --quiet || git commit -m "Auto-update laws and shinryohoshu data: $(date +'%Y-%m-%d %H:%M:%S UTC')"
+          git add output/
+          git diff --cached --quiet || git commit -m "Auto-update data: $(date +'%Y-%m-%d %H:%M:%S UTC')"
           git push origin main
