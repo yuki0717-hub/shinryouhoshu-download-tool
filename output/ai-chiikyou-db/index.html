@@ -10,42 +10,85 @@
         .header { background: linear-gradient(135deg, #1a2a3e, #0d47a1); padding: 30px 20px; text-align: center; border-bottom: 2px solid #42a5f5; }
         .header h1 { font-size: 1.8em; color: #fff; margin-bottom: 8px; }
         .header p { color: #a0c0e0; font-size: 0.95em; }
-        .back-link { display: inline-block; margin: 20px; padding: 10px 20px; background: #2d2d5e; color: #8b8bff; text-decoration: none; border-radius: 8px; transition: background 0.3s; }
+        .back-link { display: inline-block; margin: 20px; padding: 10px 20px; background: #2d2d5e; color: #8b8bff; text-decoration: none; border-radius: 8px; }
         .back-link:hover { background: #3d3d7e; }
         .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         .card { background: #12122a; border: 1px solid #2a2a5a; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
         .card h2 { color: #42a5f5; font-size: 1.3em; margin-bottom: 12px; border-bottom: 1px solid #2a2a5a; padding-bottom: 8px; }
         .card p { line-height: 1.8; color: #b0b0d0; }
         .file-list { list-style: none; padding: 0; }
-        .file-list li { padding: 12px 16px; margin: 8px 0; background: #1a1a3e; border-radius: 8px; border-left: 3px solid #42a5f5; }
+        .file-list li { padding: 14px 16px; margin: 8px 0; background: #1a1a3e; border-radius: 8px; border-left: 3px solid #42a5f5; }
+        .file-list li a { color: #64b5f6; text-decoration: none; font-weight: bold; }
+        .file-list li a:hover { color: #fff; text-decoration: underline; }
+        .file-list li .desc { display: block; color: #888; font-size: 0.85em; margin-top: 4px; }
         .status-badge { display: inline-block; padding: 4px 12px; background: #1b2a3a; color: #42a5f5; border-radius: 12px; font-size: 0.85em; margin-top: 8px; }
         .info-box { background: #1a1a3e; border: 1px solid #3a3a6a; border-radius: 8px; padding: 16px; margin: 16px 0; }
-        .info-box code { background: #2a2a5a; padding: 2px 8px; border-radius: 4px; color: #42a5f5; font-size: 0.9em; }
+        .info-box code { background: #2a2a5a; padding: 2px 8px; border-radius: 4px; color: #42a5f5; font-size: 0.9em; word-break: break-all; }
+        .source-note { background: #1a1a2e; border: 1px solid #333366; border-radius: 8px; padding: 16px; margin-top: 16px; font-size: 0.9em; color: #9999bb; }
+        .source-note a { color: #42a5f5; }
         .footer { text-align: center; padding: 30px; color: #666; font-size: 0.85em; border-top: 1px solid #2a2a5a; margin-top: 40px; }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>📋 中医協資料データベース</h1>
-        <p>中央社会保険医療協議会の答申・議事録・配布資料</p>
+        <p>中央社会保険医療協議会 総会の答申・議事次第・配布資料</p>
     </div>
     <a href="https://yuki0717-hub.github.io/shinryouhoshu-download-tool/" class="back-link">← トップページに戻る</a>
     <div class="container">
         <div class="card">
             <h2>📋 データベース概要</h2>
-            <p>中央社会保険医療協議会（中医協）の審議資料・答申・議事録を収集し、AI（LLM）から参照可能な形式で構造化しています。診療報酬改定の審議過程を追跡できます。</p>
-            <span class="status-badge">✅ 毎日自動更新</span>
+            <p>中央社会保険医療協議会（中医協）総会の令和8年度診療報酬改定に関する審議資料・答申・議事次第を収集し、リンク集として提供しています。</p>
+            <span class="status-badge">✅ 稼働中</span>
         </div>
 
         <div class="card">
-            <h2>📁 収録データ</h2>
+            <h2>📁 令和8年度改定 主要会議資料</h2>
             <ul class="file-list">
-                <li>📄 中医協総会 議事録・配布資料</li>
-                <li>📄 中医協答申書</li>
-                <li>📄 診療報酬基本問題小委員会 資料</li>
-                <li>📄 医療技術評価分科会 資料</li>
-                <li>📄 薬価専門部会 資料</li>
-                <li>📄 保険医療材料専門部会 資料</li>
+                <li>
+                    <a href="https://www.mhlw.go.jp/stf/newpage_70414.html" target="_blank">📄 第647回 中医協総会（2026/2/13）— 答申</a>
+                    <span class="desc">令和8年度診療報酬改定の答申書・個別改定項目・点数表別紙</span>
+                </li>
+                <li>
+                    <a href="https://www.mhlw.go.jp/content/10808000/001655176.pdf" target="_blank">📄 個別改定項目について（短冊）</a>
+                    <span class="desc">PDF 4.8MB — 全改定項目の詳細</span>
+                </li>
+                <li>
+                    <a href="https://www.mhlw.go.jp/content/10808000/001655177.pdf" target="_blank">📄 答申書</a>
+                    <span class="desc">PDF — 中医協会長から厚生労働大臣への正式答申</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>📁 審議経過資料</h2>
+            <ul class="file-list">
+                <li>
+                    <a href="https://www.mhlw.go.jp/content/10808000/001637094.pdf" target="_blank">📄 これまでの議論の整理（案）</a>
+                    <span class="desc">PDF — 第643回 公聴会資料（2026/1/21）</span>
+                </li>
+                <li>
+                    <a href="https://www.mhlw.go.jp/content/10808000/001646855.pdf" target="_blank">📄 パブリックコメント結果</a>
+                    <span class="desc">PDF — 議論の整理に関する国民意見</span>
+                </li>
+                <li>
+                    <a href="https://www.mhlw.go.jp/content/10808000/001631287.pdf" target="_blank">📄 諮問書（2026/1/14）</a>
+                    <span class="desc">PDF — 厚生労働省発保0114第1号</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>📁 中医協総会 過去の会議一覧</h2>
+            <ul class="file-list">
+                <li>
+                    <a href="https://www.mhlw.go.jp/stf/shingi/shingi-chuo_128154.html" target="_blank">📄 中医協総会 議事次第一覧（厚労省）</a>
+                    <span class="desc">全回の議事次第・配布資料・議事録へのリンク</span>
+                </li>
+                <li>
+                    <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000106602.html" target="_blank">📄 診療報酬改定ポータル（厚労省）</a>
+                    <span class="desc">過去の改定情報も含む総合ページ</span>
+                </li>
             </ul>
         </div>
 
@@ -58,14 +101,12 @@
             </div>
         </div>
 
-        <div class="card">
-            <h2>📊 データ形式</h2>
-            <p>JSON / TXT 形式で提供。GitHub Actions により厚生労働省サイトから定期的に自動取得・更新されます。</p>
+        <div class="source-note">
+            <strong>📌 出典：</strong><a href="https://www.mhlw.go.jp/stf/shingi/shingi-chuo_128154.html" target="_blank">厚生労働省 中央社会保険医療協議会 総会</a>の公開資料です。
         </div>
     </div>
     <div class="footer">
-        <p>© 2026 診療報酬データベース | GitHub Pages で自動配信</p>
+        <p>© 2026 診療報酬データベース | 最終確認: 2026-02-22</p>
     </div>
 </body>
 </html>
-
