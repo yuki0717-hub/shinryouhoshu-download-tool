@@ -22,6 +22,7 @@
         .file-list li a:hover { color: #fff; text-decoration: underline; }
         .file-list li .desc { display: block; color: #888; font-size: 0.85em; margin-top: 4px; }
         .status-badge { display: inline-block; padding: 4px 12px; background: #3a1b1b; color: #ef5350; border-radius: 12px; font-size: 0.85em; margin-top: 8px; }
+        .warning-box { background: #3a2a1a; border: 1px solid #ff9800; border-radius: 8px; padding: 16px; margin: 16px 0; color: #ffcc80; }
         .info-box { background: #1a1a3e; border: 1px solid #3a3a6a; border-radius: 8px; padding: 16px; margin: 16px 0; }
         .info-box code { background: #2a2a5a; padding: 2px 8px; border-radius: 4px; color: #ef5350; font-size: 0.9em; word-break: break-all; }
         .source-note { background: #1a1a2e; border: 1px solid #333366; border-radius: 8px; padding: 16px; margin-top: 16px; font-size: 0.9em; color: #9999bb; }
@@ -38,56 +39,66 @@
     <div class="container">
         <div class="card">
             <h2>📋 データベース概要</h2>
-            <p>診療報酬制度の根拠となる法律・政省令・告示を、e-Gov法令検索等の公式ソースからリンク集として提供しています。AI（LLM）からの参照にも対応しています。</p>
-            <span class="status-badge">✅ 稼働中</span>
+            <p>診療報酬制度の根拠となる法律・政省令を、e-Gov法令APIから自動取得し、テキスト形式で保存しています。全10法令のダウンロード済みデータと、CSVインデックスを公開しています。</p>
+            <span class="status-badge">✅ 全10件ダウンロード済み</span>
         </div>
 
         <div class="card">
-            <h2>📁 主要法令（e-Gov法令検索）</h2>
+            <h2>📊 CSVインデックス（機械可読）</h2>
+            <div class="info-box">
+                <p>全法令の取得状況・ファイルサイズ・URLをCSVで確認できます：</p><br>
+                <code><a href="./data/laws_index.csv" style="color:#ef5350;">./data/laws_index.csv</a></code>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📁 ダウンロード済み法令テキスト（全10件）</h2>
             <ul class="file-list">
                 <li>
-                    <a href="https://elaws.e-gov.go.jp/document?lawid=211AC0000000070" target="_blank">📄 健康保険法</a>
-                    <span class="desc">大正11年法律第70号 — 医療保険制度の基本法</span>
+                    <a href="./text/kenko-hoken-hou.txt">📄 健康保険法</a>
+                    <span class="desc">大正11年法律第70号 — e-Gov law_id: 211AC0000000070 — 640.4 KB</span>
                 </li>
                 <li>
-                    <a href="https://elaws.e-gov.go.jp/document?lawid=332M50000100015" target="_blank">📄 保険医療機関及び保険医療養担当規則（療担規則）</a>
-                    <span class="desc">昭和32年厚生省令第15号 — 保険診療のルール</span>
+                    <a href="./text/kenko-hoken-seirei.txt">📄 健康保険法施行令</a>
+                    <span class="desc">大正15年勅令第243号 — e-Gov law_id: 215IO0000000243 — 346.0 KB</span>
                 </li>
                 <li>
-                    <a href="https://elaws.e-gov.go.jp/document?lawid=323AC0000000192" target="_blank">📄 医療法</a>
-                    <span class="desc">昭和23年法律第205号 — 医療提供体制の基本法</span>
+                    <a href="./text/kenko-hoken-kisoku.txt">📄 健康保険法施行規則</a>
+                    <span class="desc">大正15年内務省令第36号 — e-Gov law_id: 215M10000008036 — 588.0 KB</span>
                 </li>
                 <li>
-                    <a href="https://elaws.e-gov.go.jp/document?lawid=357AC0000000080" target="_blank">📄 高齢者の医療の確保に関する法律</a>
-                    <span class="desc">昭和57年法律第80号 — 後期高齢者医療制度等</span>
+                    <a href="./text/ryoutan-kisoku.txt">📄 保険医療機関及び保険医療養担当規則</a>
+                    <span class="desc">昭和32年厚生省令第15号 — e-Gov law_id: 332M50000100015 — 81.1 KB</span>
                 </li>
                 <li>
-                    <a href="https://elaws.e-gov.go.jp/document?lawid=409AC0000000123" target="_blank">📄 介護保険法</a>
-                    <span class="desc">平成9年法律第123号 — 介護保険制度の基本法</span>
+                    <a href="./text/iryo-hou.txt">📄 医療法</a>
+                    <span class="desc">昭和23年法律第205号 — e-Gov law_id: 323AC0000000205 — 567.3 KB</span>
+                </li>
+                <li>
+                    <a href="./text/iryo-seirei.txt">📄 医療法施行令</a>
+                    <span class="desc">昭和23年政令第326号 — e-Gov law_id: 323CO0000000326 — 125.9 KB</span>
+                </li>
+                <li>
+                    <a href="./text/iryo-kisoku.txt">📄 医療法施行規則</a>
+                    <span class="desc">昭和23年厚生省令第50号 — e-Gov law_id: 323M40000100050 — 1047.5 KB</span>
+                </li>
+                <li>
+                    <a href="./text/ishi-hou.txt">📄 医師法</a>
+                    <span class="desc">昭和23年法律第201号 — e-Gov law_id: 323AC0000000201 — 73.1 KB</span>
+                </li>
+                <li>
+                    <a href="./text/koureisha-iryo-hou.txt">📄 高齢者の医療の確保に関する法律</a>
+                    <span class="desc">昭和57年法律第80号 — e-Gov law_id: 357AC0000000080 — 559.8 KB</span>
+                </li>
+                <li>
+                    <a href="./text/kaigo-hoken-hou.txt">📄 介護保険法</a>
+                    <span class="desc">平成9年法律第123号 — e-Gov law_id: 409AC0000000123 — 970.6 KB</span>
                 </li>
             </ul>
         </div>
 
         <div class="card">
-            <h2>📁 告示・通知等</h2>
-            <ul class="file-list">
-                <li>
-                    <a href="https://www.mhlw.go.jp/stf/newpage_70414.html" target="_blank">📄 診療報酬の算定方法（令和8年度答申）</a>
-                    <span class="desc">医科・歯科・調剤の点数表告示（答申別紙）</span>
-                </li>
-                <li>
-                    <a href="https://www.mhlw.go.jp/hourei/" target="_blank">📄 厚生労働省 法令等データベース</a>
-                    <span class="desc">通知・通達の検索（厚労省公式）</span>
-                </li>
-                <li>
-                    <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000106602.html" target="_blank">📄 診療報酬改定 総合ページ</a>
-                    <span class="desc">過去の改定告示・通知のアーカイブ</span>
-                </li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h2>📁 法令検索ツール</h2>
+            <h2>📁 外部リンク（e-Gov法令検索・厚労省）</h2>
             <ul class="file-list">
                 <li>
                     <a href="https://elaws.e-gov.go.jp/" target="_blank">📄 e-Gov法令検索</a>
@@ -97,20 +108,26 @@
                     <a href="https://www.mhlw.go.jp/hourei/" target="_blank">📄 厚生労働省法令等データベースサービス</a>
                     <span class="desc">厚労省所管の通知・通達を検索</span>
                 </li>
+                <li>
+                    <a href="https://www.mhlw.go.jp/stf/newpage_70414.html" target="_blank">📄 診療報酬の算定方法（令和8年度答申）</a>
+                    <span class="desc">医科・歯科・調剤の点数表告示（答申別紙）</span>
+                </li>
             </ul>
         </div>
 
         <div class="card">
             <h2>🔗 AI からの参照方法</h2>
             <div class="info-box">
-                <p>ChatGPT・Claude・Gemini などで以下のURLを指定してください：</p>
-                <br>
+                <p>ChatGPT・Claude・Gemini などで以下のURLを指定してください：</p><br>
                 <code>https://yuki0717-hub.github.io/shinryouhoshu-download-tool/output/ai-hourei-db/</code>
+                <br><br>
+                <p>個別の法令テキストを直接取得する場合：</p><br>
+                <code>https://yuki0717-hub.github.io/shinryouhoshu-download-tool/output/ai-hourei-db/text/kenko-hoken-hou.txt</code>
             </div>
         </div>
 
         <div class="source-note">
-            <strong>📌 出典：</strong><a href="https://elaws.e-gov.go.jp/" target="_blank">e-Gov法令検索</a>および<a href="https://www.mhlw.go.jp/hourei/" target="_blank">厚生労働省法令等データベース</a>の公開情報です。<br>
+            <strong>📌 出典：</strong><a href="https://elaws.e-gov.go.jp/" target="_blank">e-Gov法令検索</a>（法令API）からテキストを自動取得しています。毎日自動更新。<br>
             ※ 令和8年度改定の告示・通知は2026年3月上旬に公表予定です。
         </div>
     </div>
