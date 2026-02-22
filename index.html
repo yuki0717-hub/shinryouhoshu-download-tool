@@ -20,22 +20,21 @@
             padding: 40px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 30px;
-        }
+        h1 { color: #333; text-align: center; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 30px; }
         .info-box {
             background: #f0f4ff;
             border-left: 4px solid #667eea;
             padding: 20px;
             margin: 20px 0;
             border-radius: 5px;
+        }
+        .info-box code {
+            background: #e8ecf8;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            word-break: break-all;
         }
         .db-links {
             display: grid;
@@ -50,22 +49,12 @@
             padding: 20px;
             transition: all 0.3s;
         }
-        .db-card:hover {
-            border-color: #667eea;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
-        }
-        .db-card h3 {
-            color: #667eea;
-            margin-top: 0;
-        }
-        .db-card a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .db-card a:hover {
-            text-decoration: underline;
-        }
+        .db-card:hover { border-color: #667eea; box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2); }
+        .db-card h3 { color: #667eea; margin-top: 0; }
+        .db-card a { color: #667eea; text-decoration: none; font-weight: bold; }
+        .db-card a:hover { text-decoration: underline; }
+        .db-card .badge-ok { display: inline-block; background: #e8f5e9; color: #2e7d32; padding: 2px 8px; border-radius: 8px; font-size: 0.8em; }
+        .db-card .badge-link { display: inline-block; background: #fff3e0; color: #e65100; padding: 2px 8px; border-radius: 8px; font-size: 0.8em; }
         .status {
             background: #e8f5e9;
             border: 1px solid #4caf50;
@@ -74,12 +63,20 @@
             margin: 20px 0;
             color: #2e7d32;
         }
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            color: #999;
-            font-size: 12px;
+        .data-summary {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
         }
+        .data-summary h3 { color: #333; margin-top: 0; }
+        .data-summary table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .data-summary th, .data-summary td { text-align: left; padding: 8px 12px; border-bottom: 1px solid #ddd; }
+        .data-summary th { background: #667eea; color: white; }
+        .data-summary a { color: #667eea; text-decoration: none; }
+        .data-summary a:hover { text-decoration: underline; }
+        footer { text-align: center; margin-top: 40px; color: #999; font-size: 12px; }
     </style>
 </head>
 <body>
@@ -99,40 +96,80 @@
         </div>
 
         <h2>📁 データベース一覧</h2>
-        
+
         <div class="db-links">
             <div class="db-card">
+                <h3>⚖️ 関連法令</h3>
+                <span class="badge-ok">全10件DL済み</span>
+                <p>健康保険法・医療法・医師法など全文テキスト</p>
+                <a href="./output/ai-hourei-db/">→ 詳細を表示</a>
+            </div>
+
+            <div class="db-card">
                 <h3>🏥 診療報酬改定資料</h3>
+                <span class="badge-ok">テキスト9件+PDF/Excel約37件DL済み</span>
                 <p>令和8年度の改定通知・施設基準・疑義解釈など</p>
                 <a href="./output/ai-shinryou-db/">→ 詳細を表示</a>
             </div>
 
             <div class="db-card">
                 <h3>💰 点数表マスター</h3>
+                <span class="badge-link">外部リンクのみ</span>
                 <p>診療報酬点数表（医科・歯科・調剤）</p>
                 <a href="./output/ai-tensuhyo-db/">→ 詳細を表示</a>
             </div>
 
             <div class="db-card">
-                <h3>⚖️ 関連法令</h3>
-                <p>健康保険法・医療法・医師法など</p>
-                <a href="./output/ai-hourei-db/">→ 詳細を表示</a>
-            </div>
-
-            <div class="db-card">
                 <h3>📋 中医協資料</h3>
+                <span class="badge-link">外部リンクのみ</span>
                 <p>中央社会保険医療協議会の答申・議事録</p>
                 <a href="./output/ai-chiikyou-db/">→ 詳細を表示</a>
             </div>
         </div>
 
+        <div class="data-summary">
+            <h3>📊 ダウンロード済みデータへの直接アクセス</h3>
+            <table>
+                <tr><th>データ</th><th>内容</th><th>直接リンク</th></tr>
+                <tr>
+                    <td>法令CSVインデックス</td>
+                    <td>10法令の取得状況一覧</td>
+                    <td><a href="./output/ai-hourei-db/data/laws_index.csv">laws_index.csv</a></td>
+                </tr>
+                <tr>
+                    <td>法令テキスト（例）</td>
+                    <td>健康保険法 全文 640KB</td>
+                    <td><a href="./output/ai-hourei-db/text/kenko-hoken-hou.txt">kenko-hoken-hou.txt</a></td>
+                </tr>
+                <tr>
+                    <td>改定資料CSVインデックス</td>
+                    <td>テキスト・PDF 11件の一覧</td>
+                    <td><a href="./output/ai-shinryou-db/data/comprehensive_index.csv">comprehensive_index.csv</a></td>
+                </tr>
+                <tr>
+                    <td>厚労省DLファイル一覧</td>
+                    <td>PDF・Excel約37件の一覧</td>
+                    <td><a href="./output/ai-shinryou-db/data/files_list.csv">files_list.csv</a></td>
+                </tr>
+                <tr>
+                    <td>ポータルリンク集</td>
+                    <td>厚労省ページ構造 JSON</td>
+                    <td><a href="./output/ai-shinryou-db/data/portalpage_links.json">portalpage_links.json</a></td>
+                </tr>
+            </table>
+        </div>
+
         <h2>🔗 AI からの参照方法</h2>
         <div class="info-box">
             <strong>ChatGPT/Claude/Gemini で以下 URL にアクセス可能：</strong><br><br>
-            <code style="background:#f5f5f5;padding:5px;">https://yuki0717-hub.github.io/shinryouhoshu-download-tool/output/ai-shinryou-db/</code><br><br>
-            <code style="background:#f5f5f5;padding:5px;">https://yuki0717-hub.github.io/shinryouhoshu-download-tool/output/ai-tensuhyo-db/</code><br><br>
-            <code style="background:#f5f5f5;padding:5px;">https://yuki0717-hub.github.io/shinryouhoshu-download-tool/output/ai-hourei-db/</code><br><br>
-            <code style="background:#f5f5f5;padding:5px;">https://yuki0717-hub.github.io/shinryouhoshu-download-tool/output/ai-chiikyou-db/</code>
+            <strong>法令DB（DL済み・推奨）：</strong><br>
+            <code>https://yuki0717-hub.github.io/shinryouhoshu-download-tool/output/ai-hourei-db/</code><br><br>
+            <strong>改定資料DB（DL済み・推奨）：</strong><br>
+            <code>https://yuki0717-hub.github.io/shinryouhoshu-download-tool/output/ai-shinryou-db/</code><br><br>
+            <strong>点数表マスター（外部リンクのみ）：</strong><br>
+            <code>https://yuki0717-hub.github.io/shinryouhoshu-download-tool/output/ai-tensuhyo-db/</code><br><br>
+            <strong>中医協資料（外部リンクのみ）：</strong><br>
+            <code>https://yuki0717-hub.github.io/shinryouhoshu-download-tool/output/ai-chiikyou-db/</code>
         </div>
 
         <h2>📖 使用ガイド</h2>
