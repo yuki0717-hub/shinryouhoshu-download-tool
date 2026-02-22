@@ -15,7 +15,12 @@
         .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         .card { background: #12122a; border: 1px solid #2a2a5a; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
         .card h2 { color: #6c63ff; font-size: 1.3em; margin-bottom: 12px; border-bottom: 1px solid #2a2a5a; padding-bottom: 8px; }
-        .card p { line-height: 1.8; color: #b0b0d0; }
+        .card h3 { color: #9e9eff; font-size: 1.1em; margin: 16px 0 8px 0; }
+        .card p, .card li { line-height: 1.8; color: #b0b0d0; }
+        .card table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.9em; }
+        .card th { background: #2a2a5a; color: #c0c0ff; padding: 8px; text-align: left; }
+        .card td { padding: 8px; border-bottom: 1px solid #2a2a5a; color: #b0b0d0; }
+        .card tr:hover td { background: #1a1a3e; }
         .file-list { list-style: none; padding: 0; }
         .file-list li { padding: 14px 16px; margin: 8px 0; background: #1a1a3e; border-radius: 8px; border-left: 3px solid #6c63ff; }
         .file-list li a { color: #8b8bff; text-decoration: none; font-weight: bold; }
@@ -23,6 +28,8 @@
         .file-list li .desc { display: block; color: #888; font-size: 0.85em; margin-top: 4px; }
         .status-badge { display: inline-block; padding: 4px 12px; background: #1b3a1b; color: #4caf50; border-radius: 12px; font-size: 0.85em; margin-top: 8px; }
         .warning-box { background: #3a2a1a; border: 1px solid #ff9800; border-radius: 8px; padding: 16px; margin: 16px 0; color: #ffcc80; }
+        .faq-q { color: #8b8bff; font-weight: bold; margin-top: 16px; }
+        .faq-a { color: #b0b0d0; margin: 4px 0 16px 0; padding-left: 16px; border-left: 2px solid #6c63ff; }
         .info-box { background: #1a1a3e; border: 1px solid #3a3a6a; border-radius: 8px; padding: 16px; margin: 16px 0; }
         .info-box code { background: #2a2a5a; padding: 2px 8px; border-radius: 4px; color: #8b8bff; font-size: 0.9em; word-break: break-all; }
         .source-note { background: #1a1a2e; border: 1px solid #333366; border-radius: 8px; padding: 16px; margin-top: 16px; font-size: 0.9em; color: #9999bb; }
@@ -37,12 +44,206 @@
     </div>
     <a href="https://yuki0717-hub.github.io/shinryouhoshu-download-tool/" class="back-link">← トップページに戻る</a>
     <div class="container">
+
         <div class="card">
             <h2>📋 データベース概要</h2>
-            <p>厚生労働省の診療報酬改定関連資料を自動収集し、テキスト化・保存しています。ダウンロード済みデータはこのサーバー内から直接取得可能です。外部リンク（厚労省PDF等）も併記しています。</p>
+            <p>厚生労働省の診療報酬改定関連資料を自動収集し、テキスト化・保存しています。ダウンロード済みデータはこのサーバー内から直接取得可能です。主要な改定内容の要約とFAQも以下に掲載しています。</p>
             <span class="status-badge">✅ 稼働中（毎日自動更新）</span>
         </div>
 
+        <!-- ========== 改定概要 ========== -->
+        <div class="card">
+            <h2>📌 令和8年度診療報酬改定の概要</h2>
+            <p>2026年2月13日、中央社会保険医療協議会（中医協）が厚生労働大臣に答申。施行日は2026年6月1日。</p>
+            <h3>改定率</h3>
+            <table>
+                <tr><th>項目</th><th>改定率</th><th>概要</th></tr>
+                <tr><td>本体合計</td><td>+3.09%</td><td>30年ぶりの3%超プラス改定</td></tr>
+                <tr><td>うち賃上げ対応</td><td>+1.70%</td><td>ベースアップ評価料の拡充等</td></tr>
+                <tr><td>うち物価対応</td><td>+0.76%</td><td>物価対応料の新設</td></tr>
+                <tr><td>うち緊急対応</td><td>+0.44%</td><td>初再診料・入院基本料の引上げ</td></tr>
+                <tr><td>うちその他</td><td>+0.34%</td><td>機能分化・連携等</td></tr>
+                <tr><td>うち適正化</td><td>▲0.15%</td><td>リフィル処方推進の効率化等</td></tr>
+                <tr><td>薬価・材料</td><td>▲0.87%</td><td>薬価・材料価格の引下げ</td></tr>
+            </table>
+            <h3>改定の3本柱</h3>
+            <p>① 医療従事者の賃上げ（ベースアップ評価料の拡充、対象を全職員に拡大）<br>
+            ② 物価高騰への対応（物価対応料の新設、入院基本料・初再診料の引上げ）<br>
+            ③ 医療機能の分化・連携（急性期病院入院基本料の新設、特定機能病院の3区分化）</p>
+        </div>
+
+        <!-- ========== 主要点数一覧 ========== -->
+        <div class="card">
+            <h2>💰 主要点数一覧（令和8年6月1日施行）</h2>
+
+            <h3>初診料・再診料（医科）</h3>
+            <table>
+                <tr><th>区分</th><th>現行（R6）</th><th>改定後（R8）</th><th>増減</th></tr>
+                <tr><td>初診料</td><td>291点</td><td>291点</td><td>据え置き</td></tr>
+                <tr><td>再診料</td><td>75点</td><td>76点</td><td>+1点</td></tr>
+                <tr><td>外来診療料（200床以上再診）</td><td>75点</td><td>76点</td><td>+1点</td></tr>
+                <tr><td>再診料（2科目）</td><td>38点</td><td>39点</td><td>+1点</td></tr>
+            </table>
+
+            <h3>物価対応料（新設・医科）</h3>
+            <table>
+                <tr><th>区分</th><th>R8.6～R9.5</th><th>R9.6以降（2倍）</th></tr>
+                <tr><td>初診時</td><td>2点</td><td>4点</td></tr>
+                <tr><td>再診時等</td><td>2点</td><td>4点</td></tr>
+                <tr><td>訪問診療時</td><td>3点</td><td>6点</td></tr>
+                <tr><td>入院（急性期病院A）</td><td>66点/日</td><td>132点/日</td></tr>
+                <tr><td>入院（急性期一般1）</td><td>58点/日</td><td>116点/日</td></tr>
+                <tr><td>入院（急性期一般2～4）</td><td>45点/日</td><td>90点/日</td></tr>
+                <tr><td>入院（地域一般1・2）</td><td>32点/日</td><td>64点/日</td></tr>
+            </table>
+
+            <h3>初診料・再診料（歯科）</h3>
+            <table>
+                <tr><th>区分</th><th>現行</th><th>改定後</th><th>増減</th></tr>
+                <tr><td>歯科初診料</td><td>267点</td><td>272点</td><td>+5点</td></tr>
+                <tr><td>歯科再診料</td><td>58点</td><td>59点</td><td>+1点</td></tr>
+            </table>
+
+            <h3>ベースアップ評価料Ⅰ（医科・外来）</h3>
+            <table>
+                <tr><th>区分</th><th>現行</th><th>R8.6から</th><th>R9.6から</th></tr>
+                <tr><td>初診時</td><td>6点</td><td>17点</td><td>34点</td></tr>
+                <tr><td>再診時等</td><td>2点</td><td>4点</td><td>8点</td></tr>
+                <tr><td>訪問診療時（同一建物以外）</td><td>28点</td><td>79点</td><td>158点</td></tr>
+                <tr><td>訪問診療時（その他）</td><td>7点</td><td>19点</td><td>38点</td></tr>
+            </table>
+            <p>※継続的賃上げ実施医療機関は上乗せあり（例：R9.6以降 初診時40点、再診時10点）</p>
+
+            <h3>入院ベースアップ評価料</h3>
+            <table>
+                <tr><th>項目</th><th>現行</th><th>R8.6から</th><th>R9.6から</th></tr>
+                <tr><td>段階数</td><td>1～165</td><td>1～250</td><td>1～500</td></tr>
+                <tr><td>最大点数</td><td>165点/日</td><td>250点/日</td><td>500点/日</td></tr>
+            </table>
+
+            <h3>一般病棟入院基本料（急性期一般）</h3>
+            <table>
+                <tr><th>区分</th><th>現行</th><th>改定後</th><th>増減</th></tr>
+                <tr><td>急性期一般入院料1</td><td>1,688点</td><td>1,874点</td><td>+186点</td></tr>
+                <tr><td>急性期一般入院料2</td><td>1,644点</td><td>1,779点</td><td>+135点</td></tr>
+                <tr><td>急性期一般入院料3</td><td>1,569点</td><td>1,704点</td><td>+135点</td></tr>
+                <tr><td>急性期一般入院料4</td><td>1,462点</td><td>1,597点</td><td>+135点</td></tr>
+                <tr><td>急性期一般入院料5</td><td>1,451点</td><td>1,575点</td><td>+124点</td></tr>
+                <tr><td>急性期一般入院料6</td><td>1,404点</td><td>1,523点</td><td>+119点</td></tr>
+            </table>
+
+            <h3>新設：急性期病院一般入院基本料</h3>
+            <table>
+                <tr><th>区分</th><th>点数</th></tr>
+                <tr><td>急性期病院A一般入院料</td><td>1,930点</td></tr>
+                <tr><td>急性期病院B一般入院料</td><td>1,643点</td></tr>
+            </table>
+
+            <h3>特定機能病院入院基本料（再編：A/B/C 3区分化）</h3>
+            <table>
+                <tr><th>区分（一般病棟7:1）</th><th>点数</th><th>旧点数との差</th></tr>
+                <tr><td>特定機能病院A</td><td>2,146点</td><td>+324点</td></tr>
+                <tr><td>特定機能病院B</td><td>2,136点</td><td>+314点</td></tr>
+                <tr><td>特定機能病院C</td><td>2,016点</td><td>+194点</td></tr>
+                <tr><td>（参考：旧7:1）</td><td>1,822点</td><td>—</td></tr>
+            </table>
+
+            <h3>地域一般入院基本料</h3>
+            <table>
+                <tr><th>区分</th><th>現行</th><th>改定後</th><th>増減</th></tr>
+                <tr><td>地域一般入院料1</td><td>1,176点</td><td>1,290点</td><td>+114点</td></tr>
+                <tr><td>地域一般入院料2</td><td>1,170点</td><td>1,282点</td><td>+112点</td></tr>
+                <tr><td>地域一般入院料3</td><td>1,003点</td><td>1,097点</td><td>+94点</td></tr>
+            </table>
+
+            <h3>調剤基本料</h3>
+            <table>
+                <tr><th>区分</th><th>現行</th><th>改定後</th><th>増減</th></tr>
+                <tr><td>調剤基本料1</td><td>45点</td><td>47点</td><td>+2点</td></tr>
+                <tr><td>調剤基本料2</td><td>29点</td><td>30点</td><td>+1点</td></tr>
+                <tr><td>調剤基本料3イ</td><td>24点</td><td>25点</td><td>+1点</td></tr>
+                <tr><td>調剤基本料3ロ</td><td>19点</td><td>20点</td><td>+1点</td></tr>
+                <tr><td>調剤基本料3ハ</td><td>35点</td><td>37点</td><td>+2点</td></tr>
+            </table>
+        </div>
+
+        <!-- ========== 答申附帯意見 ========== -->
+        <div class="card">
+            <h2>📜 答申附帯意見の要約（全26項目）</h2>
+            <p>2026年2月13日の答申書に添付された附帯意見の主要項目です。</p>
+            <table>
+                <tr><th>番号</th><th>テーマ</th><th>概要</th></tr>
+                <tr><td>1</td><td>全般</td><td>診療報酬体系の簡素化、届出オンライン化の推進</td></tr>
+                <tr><td>2</td><td>物価対応</td><td>経営状況を把握し、R9年度の更なる対応を検討</td></tr>
+                <tr><td>3</td><td>賃上げ</td><td>40歳未満勤務医・事務職員等含む幅広い職種の賃上げ実態把握</td></tr>
+                <tr><td>4</td><td>タスクシフト</td><td>看護職員と他職種の協働体制、ICT・AI活用の検証</td></tr>
+                <tr><td>5</td><td>急性期入院</td><td>急性期病院一般入院基本料の新設による影響検証</td></tr>
+                <tr><td>6</td><td>高度急性期</td><td>特定集中治療室管理料、SOFA スコア等の評価指標検討</td></tr>
+                <tr><td>7</td><td>救急</td><td>高齢者救急受入れ、下り搬送評価の影響検証</td></tr>
+                <tr><td>8</td><td>包括期入院</td><td>地域包括医療・ケア・回復期リハ病棟の評価見直し</td></tr>
+                <tr><td>9</td><td>DPC</td><td>DPC/PDPSの包括払いの在り方検討</td></tr>
+                <tr><td>10</td><td>医師偏在</td><td>人口少数地域の外来・在宅医療確保支援の検証</td></tr>
+                <tr><td>11</td><td>外来機能分化</td><td>逆紹介割合に基づく減算規定の見直し検証</td></tr>
+                <tr><td>12</td><td>生活習慣病管理</td><td>生活習慣病管理料（Ⅰ）（Ⅱ）の影響検証</td></tr>
+                <tr><td>13</td><td>かかりつけ医</td><td>かかりつけ医機能報告制度の施行状況を踏まえた評価検討</td></tr>
+                <tr><td>14</td><td>在宅医療</td><td>往診・訪問診療・訪問看護等の適切な評価検討</td></tr>
+                <tr><td>15</td><td>訪問看護</td><td>包括型訪問看護療養費の新設、精神科訪問看護の検証</td></tr>
+                <tr><td>16</td><td>精神医療</td><td>精神科地域密着多機能体制加算の検証</td></tr>
+                <tr><td>17</td><td>医療DX</td><td>電子処方箋、電子カルテ共有、オンライン診療の検証</td></tr>
+                <tr><td>18</td><td>医療技術</td><td>リアルワールドデータ活用、イノベーション評価</td></tr>
+                <tr><td>19</td><td>歯科</td><td>歯科疾患管理、デジタル化、医科歯科連携の検証</td></tr>
+                <tr><td>20</td><td>調剤（薬局）</td><td>敷地内・門前薬局の影響検証、薬局ビジョンの検討</td></tr>
+                <tr><td>21</td><td>薬局偏在</td><td>都市部小規模乱立の解消、地域支援体制加算の検討</td></tr>
+                <tr><td>22</td><td>長期処方</td><td>リフィル処方の積極的活用策検討</td></tr>
+                <tr><td>23</td><td>後発医薬品</td><td>バイオ後続品含む使用促進の検証</td></tr>
+                <tr><td>24</td><td>医薬品保険給付</td><td>長期収載品・食品類似薬の影響検証</td></tr>
+                <tr><td>25</td><td>薬価等制度</td><td>イノベーション推進、安定供給確保の検討</td></tr>
+                <tr><td>26</td><td>施策検証</td><td>データ・エビデンスに基づく迅速な検証方策の検討</td></tr>
+            </table>
+        </div>
+
+        <!-- ========== FAQ ========== -->
+        <div class="card">
+            <h2>❓ よくある質問（FAQ）</h2>
+
+            <p class="faq-q">Q1. 令和8年度の初診料は何点ですか？</p>
+            <p class="faq-a">A1. 医科初診料は291点で据え置きです。ただし新設の物価対応料（初診時2点、R9.6以降4点）とベースアップ評価料Ⅰ（初診時17点、R9.6以降34点）が加算されるため、実質的な初診時の点数は増加します。</p>
+
+            <p class="faq-q">Q2. 再診料はいくらに変わりましたか？</p>
+            <p class="faq-a">A2. 医科再診料は75点から76点に1点引き上げられました。加えて物価対応料（再診時2点）とベースアップ評価料Ⅰ（再診時4点）が加算されます。</p>
+
+            <p class="faq-q">Q3. 改定率は何%ですか？</p>
+            <p class="faq-a">A3. 本体+3.09%（30年ぶりの3%超プラス改定）。内訳は賃上げ+1.70%、物価対応+0.76%、緊急対応+0.44%、その他+0.34%、適正化▲0.15%。薬価・材料は▲0.87%。</p>
+
+            <p class="faq-q">Q4. ベースアップ評価料の対象職員は？</p>
+            <p class="faq-a">A4. 令和6年度は「主として医療に従事する職員（医師・歯科医師を除く）」でしたが、令和8年度から「保険医療機関に勤務する職員」に拡大。医師・事務職員も対象になります。</p>
+
+            <p class="faq-q">Q5. 物価対応料とは何ですか？</p>
+            <p class="faq-a">A5. 令和8年度新設の加算で、物価高騰による物件費負担増に対応するもの。初再診料・入院基本料に上乗せして算定します。令和9年6月以降は点数が2倍になる段階的評価が特徴です。</p>
+
+            <p class="faq-q">Q6. 急性期一般入院料1は何点になりましたか？</p>
+            <p class="faq-a">A6. 1,688点から1,874点に186点の増点です。入院料区分の中で最も大きい増点幅です。</p>
+
+            <p class="faq-q">Q7. 急性期病院一般入院基本料とは何ですか？</p>
+            <p class="faq-a">A7. 令和8年度新設。高度な機能を担う急性期病院を対象とした入院基本料。A区分1,930点、B区分1,643点。従来の急性期一般入院料1（1,874点）より高い評価が可能です。</p>
+
+            <p class="faq-q">Q8. 特定機能病院の入院基本料はどう変わりましたか？</p>
+            <p class="faq-a">A8. 従来の1区分からA・B・Cの3区分に再編。一般病棟7:1の場合、A=2,146点、B=2,136点、C=2,016点（旧1,822点）。地域医療貢献度や教育・研究機能に応じた評価です。</p>
+
+            <p class="faq-q">Q9. 歯科の初診料は何点ですか？</p>
+            <p class="faq-a">A9. 歯科初診料は267点から272点に5点増。歯科再診料は58点から59点に1点増。歯科外来物価対応料（初診時3点、再診時1点）も加算されます。</p>
+
+            <p class="faq-q">Q10. 調剤基本料はどう変わりましたか？</p>
+            <p class="faq-a">A10. 調剤基本料1が45点から47点に2点増。調剤物価対応料（1点、3月に1回）も新設されました。</p>
+
+            <p class="faq-q">Q11. 賃上げ未実施の医療機関にペナルティはありますか？</p>
+            <p class="faq-a">A11. はい。令和6年度・7年度に賃上げを実施していない医療機関は、入院基本料・特定入院料・短期滞在手術等基本料が減算されます（例：急性期一般1等で121点/日の減算）。</p>
+
+            <p class="faq-q">Q12. 告示・通知はいつ公表されますか？</p>
+            <p class="faq-a">A12. 2026年3月上旬に公表予定です。施行日は2026年6月1日です。</p>
+        </div>
+
+        <!-- ========== CSVインデックス ========== -->
         <div class="card">
             <h2>📊 CSVインデックス（機械可読）</h2>
             <div class="info-box">
@@ -53,116 +254,49 @@
             </div>
         </div>
 
+        <!-- ========== DL済みテキスト ========== -->
         <div class="card">
             <h2>📁 ダウンロード済みテキスト資料（令和8年度）</h2>
             <ul class="file-list">
-                <li>
-                    <a href="./text/2026/gisoku-kaishaku/2026_%E4%BB%A4%E5%92%8C%EF%BC%98%E5%B9%B4%EF%BC%91%E6%9C%8814%E6%97%A5%E5%8E%9A%E7%94%9F%E5%8A%B4%E5%83%8D%E5%A4%A7%E8%87%A3%E3%81%8C%E4%B8%AD%E5%A4%AE%E7%A4%BE%E4%BC%9A%E4%BF%9D%E9%99%BA%E5%8C%BB%E7%99%82%E5%8D%94%E8%AD%B0%E4%BC%9A%E3%81%AB%E8%AB%AE%E5%95%8F_20260222.txt">📄 厚生労働大臣が中医協に諮問（2026/1/14）</a>
-                    <span class="desc">テキスト 11.7 KB — 疑義解釈カテゴリ</span>
-                </li>
-                <li>
-                    <a href="./text/2026/gisoku-kaishaku/2026_%E4%BB%A4%E5%92%8C%EF%BC%98%E5%B9%B4%EF%BC%92%E6%9C%8813%E6%97%A5%E4%B8%AD%E5%A4%AE%E7%A4%BE%E4%BC%9A%E4%BF%9D%E9%99%BA%E5%8C%BB%E7%99%82%E5%8D%94%E8%AD%B0%E4%BC%9A%E3%81%8C%E5%8E%9A%E7%94%9F%E5%8A%B4%E5%83%8D%E5%A4%A7%E8%87%A3%E3%81%AB%E7%AD%94%E7%94%B3_20260222.txt">📄 中医協が厚生労働大臣に答申（2026/2/13）</a>
-                    <span class="desc">テキスト 12.0 KB — 疑義解釈カテゴリ</span>
-                </li>
-                <li>
-                    <a href="./text/2026/other/2026_%E8%A8%BA%E7%99%82%E5%A0%B1%E9%85%AC%E6%94%B9%E5%AE%9A_20260222.txt">📄 診療報酬改定（ポータルページテキスト）</a>
-                    <span class="desc">テキスト 9.2 KB</span>
-                </li>
-                <li>
-                    <a href="./text/2026/other/2026_%E6%B6%88%E8%B2%BB%E7%A8%8E%E3%81%A8%E8%A8%BA%E7%99%82%E5%A0%B1%E9%85%AC%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6_20260222.txt">📄 消費税と診療報酬について</a>
-                    <span class="desc">テキスト 8.3 KB</span>
-                </li>
-                <li>
-                    <a href="./text/2026/other/2026_%E2%80%8B%E4%BB%A4%E5%92%8C%EF%BC%98%E5%B9%B4%E5%BA%A6%E8%A8%BA%E7%99%82%E5%A0%B1%E9%85%AC%E6%94%B9%E5%AE%9A%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%EF%BC%88%E4%BB%A4%E5%92%8C%EF%BC%97%E5%B9%B412%E6%9C%8824%E6%97%A5%EF%BC%89_20260222.txt">📄 令和8年度診療報酬改定について（令和7年12月24日）</a>
-                    <span class="desc">テキスト 8.2 KB</span>
-                </li>
-                <li>
-                    <a href="./text/2026/other/2026_%E6%89%80%E7%AE%A1%E3%81%AE%E6%B3%95%E4%BB%A4%E3%80%81%E5%91%8A%E7%A4%BA%E3%83%BB%E9%80%9A%E9%81%94%E7%AD%89_20260222.txt">📄 所管の法令、告示・通達等</a>
-                    <span class="desc">テキスト 1.4 KB</span>
-                </li>
-                <li>
-                    <a href="./text/2026/other/2026_%E9%9B%BB%E5%AD%90%E7%94%B3%E8%AB%8B%EF%BC%88%E7%94%B3%E8%AB%8B%E3%83%BB%E5%B1%8A%E5%87%BA%E7%AD%89%E3%81%AE%E6%89%8B%E7%B6%9A%E6%A1%88%E5%86%85%EF%BC%89_20260222.txt">📄 電子申請（申請・届出等の手続案内）</a>
-                    <span class="desc">テキスト 15.8 KB</span>
-                </li>
-                <li>
-                    <a href="./text/2026/tokurei-rinji/2026_%E3%82%B0%E3%83%AC%E3%83%BC%E3%82%BE%E3%83%BC%E3%83%B3%E8%A7%A3%E6%B6%88%E5%88%B6%E5%BA%A6%E3%83%BB%E6%96%B0%E4%BA%8B%E6%A5%AD%E7%89%B9%E4%BE%8B%E5%88%B6%E5%BA%A6_20260222.txt">📄 グレーゾーン解消制度・新事業特例制度</a>
-                    <span class="desc">テキスト 30.1 KB — 特例措置・臨時改定カテゴリ</span>
-                </li>
-                <li>
-                    <a href="./text/2026/iryo-kiki-tsuutatsu/2026_%E5%8C%BB%E8%96%AC%E5%93%81%E3%83%BB%E5%8C%BB%E7%99%82%E6%A9%9F%E5%99%A8_20260222.txt">📄 医薬品・医療機器</a>
-                    <span class="desc">テキスト 16.3 KB — 医療機器保険適用通知カテゴリ</span>
-                </li>
+                <li><a href="./text/2026/gisoku-kaishaku/2026_%E4%BB%A4%E5%92%8C%EF%BC%98%E5%B9%B4%EF%BC%91%E6%9C%8814%E6%97%A5%E5%8E%9A%E7%94%9F%E5%8A%B4%E5%83%8D%E5%A4%A7%E8%87%A3%E3%81%8C%E4%B8%AD%E5%A4%AE%E7%A4%BE%E4%BC%9A%E4%BF%9D%E9%99%BA%E5%8C%BB%E7%99%82%E5%8D%94%E8%AD%B0%E4%BC%9A%E3%81%AB%E8%AB%AE%E5%95%8F_20260222.txt">📄 厚生労働大臣が中医協に諮問（2026/1/14）</a><span class="desc">テキスト 11.7 KB</span></li>
+                <li><a href="./text/2026/gisoku-kaishaku/2026_%E4%BB%A4%E5%92%8C%EF%BC%98%E5%B9%B4%EF%BC%92%E6%9C%8813%E6%97%A5%E4%B8%AD%E5%A4%AE%E7%A4%BE%E4%BC%9A%E4%BF%9D%E9%99%BA%E5%8C%BB%E7%99%82%E5%8D%94%E8%AD%B0%E4%BC%9A%E3%81%8C%E5%8E%9A%E7%94%9F%E5%8A%B4%E5%83%8D%E5%A4%A7%E8%87%A3%E3%81%AB%E7%AD%94%E7%94%B3_20260222.txt">📄 中医協が厚生労働大臣に答申（2026/2/13）</a><span class="desc">テキスト 12.0 KB</span></li>
+                <li><a href="./text/2026/other/2026_%E8%A8%BA%E7%99%82%E5%A0%B1%E9%85%AC%E6%94%B9%E5%AE%9A_20260222.txt">📄 診療報酬改定（ポータルページテキスト）</a><span class="desc">テキスト 9.2 KB</span></li>
+                <li><a href="./text/2026/other/2026_%E6%B6%88%E8%B2%BB%E7%A8%8E%E3%81%A8%E8%A8%BA%E7%99%82%E5%A0%B1%E9%85%AC%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6_20260222.txt">📄 消費税と診療報酬について</a><span class="desc">テキスト 8.3 KB</span></li>
+                <li><a href="./text/2026/other/2026_%E2%80%8B%E4%BB%A4%E5%92%8C%EF%BC%98%E5%B9%B4%E5%BA%A6%E8%A8%BA%E7%99%82%E5%A0%B1%E9%85%AC%E6%94%B9%E5%AE%9A%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%EF%BC%88%E4%BB%A4%E5%92%8C%EF%BC%97%E5%B9%B412%E6%9C%8824%E6%97%A5%EF%BC%89_20260222.txt">📄 令和8年度診療報酬改定について（R7.12.24）</a><span class="desc">テキスト 8.2 KB</span></li>
+                <li><a href="./text/2026/other/2026_%E6%89%80%E7%AE%A1%E3%81%AE%E6%B3%95%E4%BB%A4%E3%80%81%E5%91%8A%E7%A4%BA%E3%83%BB%E9%80%9A%E9%81%94%E7%AD%89_20260222.txt">📄 所管の法令、告示・通達等</a><span class="desc">テキスト 1.4 KB</span></li>
+                <li><a href="./text/2026/other/2026_%E9%9B%BB%E5%AD%90%E7%94%B3%E8%AB%8B%EF%BC%88%E7%94%B3%E8%AB%8B%E3%83%BB%E5%B1%8A%E5%87%BA%E7%AD%89%E3%81%AE%E6%89%8B%E7%B6%9A%E6%A1%88%E5%86%85%EF%BC%89_20260222.txt">📄 電子申請（手続案内）</a><span class="desc">テキスト 15.8 KB</span></li>
+                <li><a href="./text/2026/tokurei-rinji/2026_%E3%82%B0%E3%83%AC%E3%83%BC%E3%82%BE%E3%83%BC%E3%83%B3%E8%A7%A3%E6%B6%88%E5%88%B6%E5%BA%A6%E3%83%BB%E6%96%B0%E4%BA%8B%E6%A5%AD%E7%89%B9%E4%BE%8B%E5%88%B6%E5%BA%A6_20260222.txt">📄 グレーゾーン解消制度・新事業特例制度</a><span class="desc">テキスト 30.1 KB</span></li>
+                <li><a href="./text/2026/iryo-kiki-tsuutatsu/2026_%E5%8C%BB%E8%96%AC%E5%93%81%E3%83%BB%E5%8C%BB%E7%99%82%E6%A9%9F%E5%99%A8_20260222.txt">📄 医薬品・医療機器</a><span class="desc">テキスト 16.3 KB</span></li>
             </ul>
+            <div class="warning-box">⚠️ 上記以外にも data/ フォルダに厚労省PDF・Excelファイルが約37件保存されています。完全な一覧は <a href="./data/files_list.csv" style="color:#ffcc80;">files_list.csv</a> を参照してください。</div>
         </div>
 
-        <div class="card">
-            <h2>📁 ダウンロード済みPDF・Excel資料</h2>
-            <ul class="file-list">
-                <li>
-                    <a href="./text/2025/kihon-hoshishin/2025_%E4%BB%A4%E5%92%8C7%E5%B9%B412%E6%9C%889%E6%97%A5%E4%BB%A4%E5%92%8C%EF%BC%98%E5%B9%B4%E5%BA%A6%E8%A8%BA%E7%99%82%E5%A0%B1%E9%85%AC%E6%94%B9%E5%AE%9A%E3%81%AE%E5%9F%BA%E6%9C%AC%E6%96%B9%E9%87%9D%EF%BC%88%E7%A4%BE%E4%BC%9A%E4%BF%9D%E9%9A%9C%E5%AF%A9%E8%AD%B0%E4%BC%9A%E5%8C%BB%E7%99%82%E4%BF%9D%E9%99%BA%E9%83%A8%E4%BC%9A%E3%83%BB%E7%A4%BE%E4%BC%9A%E4%BF%9D%E9%9A%9C%E5%AF%A9%E8%AD%B0%E4%BC%9A%E5%8C%BB%E7%99%82%E9%83%A8%E4%BC%9A%EF%BC%89%EF%BC%BB285KB%EF%BC%BD_20260222.pdf">📄 令和8年度診療報酬改定の基本方針（2025/12/9）</a>
-                    <span class="desc">PDF 284.9 KB — 基本方針カテゴリ</span>
-                </li>
-                <li>
-                    <a href="./text/2026/other/2026_%E4%BB%A4%E5%92%8C%EF%BC%98%E5%B9%B4%EF%BC%91%E6%9C%8814%E6%97%A5%E4%BB%A4%E5%92%8C%EF%BC%98%E5%B9%B4%E5%BA%A6%E8%A8%BA%E7%99%82%E5%A0%B1%E9%85%AC%E6%94%B9%E5%AE%9A%E3%81%AB%E4%BF%82%E3%82%8B%E3%81%93%E3%82%8C%E3%81%BE%E3%81%A7%E3%81%AE%E8%AD%B0%E8%AB%96%E3%81%AE%E6%95%B4%E7%90%86%EF%BC%BB494KB%EF%BC%BD_20260222.pdf">📄 これまでの議論の整理（2026/1/14）</a>
-                    <span class="desc">PDF 493.6 KB</span>
-                </li>
-            </ul>
-            <div class="warning-box">
-                ⚠️ 上記以外にも <strong>data/</strong> フォルダに厚労省からダウンロードしたPDF・Excelファイルが約37件保存されています。完全な一覧は <a href="./data/files_list.csv" style="color:#ffcc80;">files_list.csv</a> を参照してください。
-            </div>
-        </div>
-
+        <!-- ========== 外部リンク ========== -->
         <div class="card">
             <h2>📁 外部リンク（厚労省 — 未ダウンロード資料）</h2>
-            <div class="warning-box">
-                ⚠️ 以下はこのサーバーにデータが保存されていない外部リンクです。AIから直接参照するにはPDFを個別に取得する必要があります。
-            </div>
+            <div class="warning-box">⚠️ 以下はこのサーバーにデータが保存されていない外部リンクです。</div>
             <ul class="file-list">
-                <li>
-                    <a href="https://www.mhlw.go.jp/content/10808000/001655176.pdf" target="_blank">📄 個別改定項目について（総－1）</a>
-                    <span class="desc">外部PDF 4.8MB — 全改定項目の詳細（短冊）— 厚労省サイト</span>
-                </li>
-                <li>
-                    <a href="https://www.mhlw.go.jp/content/10808000/001655177.pdf" target="_blank">📄 答申書（総－2）</a>
-                    <span class="desc">外部PDF 230KB — 中医協から厚生労働大臣への答申 — 厚労省サイト</span>
-                </li>
-                <li>
-                    <a href="https://www.mhlw.go.jp/stf/newpage_70414.html" target="_blank">📄 中医協総会（第647回）議事次第</a>
-                    <span class="desc">外部HTML — 答申に関する全資料一覧ページ — 厚労省サイト</span>
-                </li>
-                <li>
-                    <a href="https://www.mhlw.go.jp/content/10808000/001631287.pdf" target="_blank">📄 令和8年度診療報酬改定について（諮問書）</a>
-                    <span class="desc">外部PDF — 2026年1月14日付 — 厚労省サイト</span>
-                </li>
-                <li>
-                    <a href="https://www.mhlw.go.jp/stf/newpage_67729.html" target="_blank">📄 令和8年度診療報酬改定について（厚労省総合ページ）</a>
-                    <span class="desc">外部HTML — 基本方針・改定率・スケジュール等 — 厚労省サイト</span>
-                </li>
-                <li>
-                    <a href="https://www.mhlw.go.jp/content/10808000/001637094.pdf" target="_blank">📄 これまでの議論の整理（公聴会資料）</a>
-                    <span class="desc">外部PDF — 第643回中医協総会（2026/1/21）— 厚労省サイト</span>
-                </li>
-                <li>
-                    <a href="https://www.mhlw.go.jp/content/10808000/001646855.pdf" target="_blank">📄 議論の整理に関するパブリックコメント結果</a>
-                    <span class="desc">外部PDF — 国民からの意見とその対応 — 厚労省サイト</span>
-                </li>
+                <li><a href="https://www.mhlw.go.jp/content/10808000/001655176.pdf" target="_blank">📄 個別改定項目について（総－1）</a><span class="desc">外部PDF 4.8MB — 全改定項目の詳細（短冊）</span></li>
+                <li><a href="https://www.mhlw.go.jp/content/10808000/001655177.pdf" target="_blank">📄 答申書（総－2）</a><span class="desc">外部PDF 230KB — 答申書本文＋附帯意見26項目</span></li>
+                <li><a href="https://www.mhlw.go.jp/stf/newpage_70414.html" target="_blank">📄 中医協総会（第647回）議事次第</a><span class="desc">外部HTML — 別紙1-1～別紙9（点数表・施設基準等）の全資料</span></li>
+                <li><a href="https://www.mhlw.go.jp/content/10808000/001631287.pdf" target="_blank">📄 諮問書（2026/1/14）</a><span class="desc">外部PDF</span></li>
+                <li><a href="https://www.mhlw.go.jp/content/10808000/001637094.pdf" target="_blank">📄 これまでの議論の整理（公聴会資料）</a><span class="desc">外部PDF</span></li>
+                <li><a href="https://www.mhlw.go.jp/content/10808000/001646855.pdf" target="_blank">📄 パブリックコメント結果</a><span class="desc">外部PDF</span></li>
             </ul>
         </div>
 
+        <!-- ========== AI参照方法 ========== -->
         <div class="card">
             <h2>🔗 AI からの参照方法</h2>
             <div class="info-box">
                 <p>ChatGPT・Claude・Gemini などで以下のURLを指定してください：</p><br>
                 <code>https://yuki0717-hub.github.io/shinryouhoshu-download-tool/output/ai-shinryou-db/</code>
-                <br><br>
-                <p>CSVインデックスを直接取得する場合：</p><br>
-                <code>https://yuki0717-hub.github.io/shinryouhoshu-download-tool/output/ai-shinryou-db/data/comprehensive_index.csv</code>
             </div>
         </div>
 
         <div class="source-note">
-            <strong>📌 出典：</strong>すべての資料は<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000106602.html" target="_blank">厚生労働省 診療報酬改定ページ</a>および<a href="https://www.mhlw.go.jp/stf/shingi/shingi-chuo_128154.html" target="_blank">中医協総会</a>から取得しています。<br>
-            ※ 告示・通知は2026年3月上旬に公表予定です。公表後に自動追加されます。
+            <strong>📌 出典：</strong>改定率・主要点数は<a href="https://www.mhlw.go.jp/stf/newpage_70414.html" target="_blank">中医協第647回総会答申</a>（2026年2月13日）に基づく。附帯意見は答申書（総−2）より要約。ベースアップ評価料の詳細点数は個別改定項目（総−1）に基づく。告示・通知は2026年3月上旬に公表予定。<br>
+            ※ 本ページの点数は答申時点の情報です。正式な告示により変更される可能性があります。
         </div>
     </div>
     <div class="footer">
