@@ -22,6 +22,7 @@
         .file-list li a:hover { color: #fff; text-decoration: underline; }
         .file-list li .desc { display: block; color: #888; font-size: 0.85em; margin-top: 4px; }
         .status-badge { display: inline-block; padding: 4px 12px; background: #1b3a1b; color: #4caf50; border-radius: 12px; font-size: 0.85em; margin-top: 8px; }
+        .warning-box { background: #3a2a1a; border: 1px solid #ff9800; border-radius: 8px; padding: 16px; margin: 16px 0; color: #ffcc80; }
         .info-box { background: #1a1a3e; border: 1px solid #3a3a6a; border-radius: 8px; padding: 16px; margin: 16px 0; }
         .info-box code { background: #2a2a5a; padding: 2px 8px; border-radius: 4px; color: #4caf50; font-size: 0.9em; word-break: break-all; }
         .source-note { background: #1a1a2e; border: 1px solid #333366; border-radius: 8px; padding: 16px; margin-top: 16px; font-size: 0.9em; color: #9999bb; }
@@ -42,52 +43,56 @@
             <span class="status-badge">✅ 稼働中</span>
         </div>
 
+        <div class="warning-box">
+            ⚠️ <strong>ローカルデータなし：</strong>このデータベースにはダウンロード済みのデータファイルはありません。以下はすべて外部サイトへのリンクです。マスターデータはZIP形式や検索フォームで提供されており、AIが直接テキストとして取得することはできません。個別の点数・コード情報が必要な場合は、法令DB（<a href="../ai-hourei-db/" style="color:#ffcc80;">ai-hourei-db</a>）の告示テキストや、診療報酬改定資料DB（<a href="../ai-shinryou-db/" style="color:#ffcc80;">ai-shinryou-db</a>）のダウンロード済みテキストを参照してください。
+        </div>
+
         <div class="card">
-            <h2>📁 厚生労働省 基本マスターダウンロード</h2>
+            <h2>📁 厚生労働省 基本マスターダウンロード（外部リンク）</h2>
             <ul class="file-list">
                 <li>
                     <a href="https://shinryohoshu.mhlw.go.jp/shinryohoshu/downloadMenu/" target="_blank">📄 基本マスター全件ダウンロード</a>
-                    <span class="desc">医科診療行為・医薬品・特定器材・傷病名マスター等</span>
+                    <span class="desc">外部サイト — 医科診療行為・医薬品・特定器材・傷病名マスター等</span>
                 </li>
                 <li>
                     <a href="https://shinryohoshu.mhlw.go.jp/shinryohoshu/kaitei/doKaiteiR08" target="_blank">📄 令和8年度改定対応マスター</a>
-                    <span class="desc">R8改定に対応したマスターのダウンロード</span>
+                    <span class="desc">外部サイト — R8改定に対応したマスターのダウンロード</span>
                 </li>
                 <li>
                     <a href="https://shinryohoshu.mhlw.go.jp/shinryohoshu/searchMenu" target="_blank">📄 マスター検索（オンライン）</a>
-                    <span class="desc">診療行為・医薬品等のコードをオンラインで検索</span>
+                    <span class="desc">外部サイト — 診療行為・医薬品等のコードをオンラインで検索</span>
                 </li>
             </ul>
         </div>
 
         <div class="card">
-            <h2>📁 支払基金 電子点数表</h2>
+            <h2>📁 支払基金 電子点数表（外部リンク）</h2>
             <ul class="file-list">
                 <li>
                     <a href="https://www.ssk.or.jp/seikyushiharai/tensuhyo/ikashika/index.html" target="_blank">📄 医科・歯科 電子点数表</a>
-                    <span class="desc">社会保険診療報酬支払基金 — ZIP形式でダウンロード可能</span>
+                    <span class="desc">外部サイト — 社会保険診療報酬支払基金 — ZIP形式でダウンロード可能</span>
                 </li>
                 <li>
                     <a href="https://www.ssk.or.jp/seikyushiharai/tensuhyo/index.html" target="_blank">📄 電子点数表トップページ</a>
-                    <span class="desc">調剤・訪問看護等を含む全電子点数表</span>
+                    <span class="desc">外部サイト — 調剤・訪問看護等を含む全電子点数表</span>
                 </li>
             </ul>
         </div>
 
         <div class="card">
-            <h2>📁 マスター種別一覧</h2>
+            <h2>📁 マスター種別一覧（外部リンク）</h2>
             <ul class="file-list">
                 <li>
                     <a href="https://shinryohoshu.mhlw.go.jp/shinryohoshu/searchMenu/doSearchInputSp" target="_blank">📄 医科診療行為マスター</a>
-                    <span class="desc">診療行為コード・名称・点数の検索</span>
+                    <span class="desc">外部サイト — 診療行為コード・名称・点数の検索</span>
                 </li>
                 <li>
                     <a href="https://shinryohoshu.mhlw.go.jp/shinryohoshu/searchMenu/doSearchKihonMaster" target="_blank">📄 基本マスター一覧</a>
-                    <span class="desc">傷病名・修飾語・コメント等の各種マスター</span>
+                    <span class="desc">外部サイト — 傷病名・修飾語・コメント等の各種マスター</span>
                 </li>
                 <li>
                     <a href="https://shinryohoshu.mhlw.go.jp/" target="_blank">📄 診療報酬情報提供サービス トップ</a>
-                    <span class="desc">厚生労働省の公式マスター提供サイト</span>
+                    <span class="desc">外部サイト — 厚生労働省の公式マスター提供サイト</span>
                 </li>
             </ul>
         </div>
@@ -95,9 +100,10 @@
         <div class="card">
             <h2>🔗 AI からの参照方法</h2>
             <div class="info-box">
-                <p>ChatGPT・Claude・Gemini などで以下のURLを指定してください：</p>
-                <br>
+                <p>ChatGPT・Claude・Gemini などで以下のURLを指定してください：</p><br>
                 <code>https://yuki0717-hub.github.io/shinryouhoshu-download-tool/output/ai-tensuhyo-db/</code>
+                <br><br>
+                <p>※ このDBにはローカルデータがないため、AIは外部リンク先の情報を直接参照できない場合があります。</p>
             </div>
         </div>
 
