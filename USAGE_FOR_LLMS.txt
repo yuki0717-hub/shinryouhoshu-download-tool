@@ -1,0 +1,81 @@
+================================================================================
+診療報酬データベース - AI LLM 参照ガイド
+Shinryouhoshu Database Mirror - Usage Guide for AI LLMs
+================================================================================
+
+【概要】
+本データベースは、厚生労働省の診療報酬関連資料・法令を構造化した形式で
+提供します。ChatGPT、Claude、Google Gemini などの LLM から直接参照可能です。
+
+【ベース URL】
+https://yuki0717-hub.github.io/shinryouhoshu-download-tool/
+
+【主要データベース】
+
+1. 診療報酬改定資料
+   - パス：/ai-shinryou-db/
+   - 内容：改定通知、施設基準、疑義解釈 Q&A、点数表、改定項目説明
+   - 対象年度：令和 8 年度（2026 年 6 月 1 日適用）
+
+2. 関連法令
+   - パス：/ai-hourei-db/
+   - 内容：健康保険法、医療法、医師法、施行令、施行規則
+   - 形式：TXT（条文）、CSV（インデックス）
+
+3. 中央社会保険医療協議会（中医協）資料
+   - パス：/ai-chiikyou-db/
+   - 内容：答申、議事録、審議資料
+
+4. 点数表マスター
+   - パス：/ai-tensuhyo-db/
+   - 内容：診療報酬点数表（医科・歯科・調剤）、マスター CSV
+
+【データアクセス例】
+
+■ 法令を参照する場合：
+https://yuki0717-hub.github.io/shinryouhoshu-download-tool/output/ai-hourei-db/text/kenko-hoken-hou.txt
+
+■ インデックス CSV を確認する場合：
+https://yuki0717-hub.github.io/shinryouhoshu-download-tool/output/ai-hourei-db/data/laws_index.csv
+
+■ 診療報酬改定通知を参照する場合：
+https://yuki0717-hub.github.io/shinryouhoshu-download-tool/output/ai-shinryou-db/
+
+【更新スケジュール】
+
+- 診療報酬改定資料：毎日 18:00 UTC（日本時間 03:00）
+- 法令・通達：毎日 13:00 UTC（日本時間 22:00）
+- 中医協資料：会議後随時
+
+【ファイルフォーマット】
+
+1. TXT ファイル：条文・本文テキスト
+   - 先頭 3 行：ID、名称、正式名称、資料番号など
+   - 本体：条文・本文内容
+
+2. CSV ファイル：インデックス
+   - 列：法令名、種類、URL、取得日時、ステータス、ファイルサイズ
+
+3. JSON ファイル：構造化データ
+   - キー：ID、名称、内容、メタデータ
+
+【利用上の注意】
+
+✓ 本データは教育・学習目的で提供されています
+✓ 最新の正式情報は厚生労働省公式サイトをご確認ください
+✓ 診療報酬請求時は必ず正式な通知・点数表を参照してください
+✓ データの著作権は厚生労働省に帰属します
+
+【お問い合わせ】
+
+GitHub Issues：
+https://github.com/yuki0717-hub/shinryouhoshu-download-tool/issues
+
+【更新履歴】
+
+2026-02-22：初版公開
+- 診療報酬改定資料を追加
+- 法令・施行令・施行規則を追加
+- GitHub Pages で公開
+
+================================================================================
