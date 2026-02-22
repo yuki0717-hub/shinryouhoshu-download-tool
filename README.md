@@ -1,110 +1,41 @@
-# shinryouhoshu-download-tool
+# 診療報酬データベースミラー
 
-診療報酬・薬価改定・関連通知・法令・中医協資料を横断して自動収集する Python ツールです。  
-厚生労働省サイトおよび e-Gov 法令検索を対象に、リンク抽出〜ダウンロード〜CSV台帳化までを一括実行します。
+> 厚生労働省の診療報酬関連資料・法令を自動収集・構造化し、AI LLM から参照可能にするプロジェクト
 
-## 機能
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-success)](https://yuki0717-hub.github.io/shinryouhoshu-download-tool/)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-- 複数ページ（`urls.json`）から自動で資料リンクを抽出
-- 対応形式: PDF / Excel / Word / TXT / CSV / ZIP
-- 保存ファイル名へ「分類・年度・日付・元タイトル」を自動付与
-- 出力フォルダを指定可能（デフォルト: `./downloads`）
-- 実行結果を `files_list.csv` と `download.log` / `error.log` に出力
-- URL重複・同名ファイル重複を自動スキップ
-- 月1回の定期実行（cron / タスクスケジューラ）に対応しやすい構成
+## 📊 プロジェクト概要
 
----
+本リポジトリは、診療報酬改定に関連する以下のデータを自動ダウンロード・構造化・公開します：
 
-## ファイル構成
+- **診療報酬改定資料**：令和8年度の改定通知、施設基準、疑義解釈など
+- **関連法令**：健康保険法、医療法、医師法などの条文
+- **中医協資料**：中央社会保険医療協議会の答申・議事録
+- **点数表マスター**：診療報酬点数表（医科・歯科・調剤）
 
-1. `main.py` - メインスクリプト
-2. `requirements.txt` - 依存ライブラリ
-3. `README.md` - 本ドキュメント
-4. `urls.json` - ダウンロード対象URLリスト（保守用）
+## 🌐 公開 URL
 
----
+**ホームページ**：https://yuki0717-hub.github.io/shinryouhoshu-download-tool/
 
-## セットアップ
+**API エンドポイント**：
+- `/ai-shinryou-db/` - 診療報酬改定資料
+- `/ai-hourei-db/` - 関連法令
+- `/ai-chiikyou-db/` - 中医協資料
+- `/ai-tensuhyo-db/` - 点数表マスター
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
+## 🤖 AI LLM からの参照
 
----
+ChatGPT、Claude、Google Gemini などから参照可能です。
 
-## 実行方法
+詳細は [USAGE_FOR_LLMS.txt](USAGE_FOR_LLMS.txt) を参照してください。
 
-### 通常実行
+## 🔄 自動更新スケジュール
 
-```bash
-python main.py
-```
+- **診療報酬改定資料**：毎日 18:00 UTC（日本時間 03:00）
+- **法令・通達**：毎日 13:00 UTC（日本時間 22:00）
+- **中医協資料**：会議後随時
 
-### 出力先を指定
-
-```bash
-python main.py --output-dir /path/to/downloads
-```
-
-### 実ファイルを保存しない確認実行（Dry Run）
-
-```bash
-python main.py --dry-run
-```
-
-### オプション
-
-- `--config` : URL定義JSON（既定: `urls.json`）
-- `--output-dir` : 出力先フォルダ（既定: `./downloads`）
-- `--timeout` : HTTPタイムアウト秒（既定: `30`）
-- `--dry-run` : ダウンロードを行わず対象一覧のみ出力
-- `--sleep` : 各ソース処理の待機秒（既定: `0.5`）
-
----
-
-## 出力ファイル
-
-### 1) `files_list.csv`
-
-列:
-
-- `file_name`
-- `category`
-- `source_page`
-- `url`
-- `downloaded_at`
-- `file_size`
-- `status`
-
-### 2) `download.log`
-
-- 処理開始・終了
-- ソース単位の進捗
-- 各ファイルの保存結果
-
-### 3) `error.log`
-
-- HTTPエラー
-- パース失敗
-- ダウンロード失敗
-
----
-
-## 月1回の定期実行例（Linux cron）
-
-毎月1日 04:00 実行:
-
-```bash
-0 4 1 * * cd /path/to/shinryouhoshu-download-tool && /usr/bin/python3 main.py >> cron.log 2>&1
-```
-
----
-
-## 運用メモ
-
-- `urls.json` の `include_keywords` を調整すると、対象資料の絞り込み精度を改善できます。
-- 厚労省のページ構造変更時は `url` とキーワードを更新してください。
-- 同一URLは自動スキップされるため、定期実行に向いています。
+## 📁 ファイル構成
 
