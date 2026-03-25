@@ -1,6 +1,6 @@
 {
   "portal_url": "https://www.mhlw.go.jp/stf/newpage_67729.html",
-  "generated_at": "2026-03-25 05:20:20",
+  "generated_at": "2026-03-25 18:44:29",
   "counts": {
     "2026": {
       "医療機器保険適用通知": 9,
@@ -12,7 +12,7 @@
       "施設基準": 4,
       "医薬品リスト": 2,
       "材料価格改定通知": 2,
-      "DPC/PDPS関連": 2
+      "DPC/PDPS関連": 4
     },
     "2025": {
       "基本方針": 1,
@@ -20,5 +20,5 @@
       "その他関連資料": 1
     }
   },
-  "total_records": 73
+  "total_records": 75
 }
